@@ -3,6 +3,7 @@
 * Written by [Gregory Morris](mailto:gmorris@microsoft.com) on a rainy afternoon
 
 # Getting Started
+* I recommend using Visual Studio Code, but you can use whatever editor you prefer
 * Install PBI tooling:
     * npm i powerbi-visuals-tools
 
