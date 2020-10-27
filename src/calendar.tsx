@@ -1,18 +1,25 @@
 import * as React from "react";
 import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin, { DayGridView } from '@fullcalendar/daygrid'
 import powerbi from "powerbi-visuals-api";
 import { Visual } from "./visual";
 import { Calendar, DayHeader } from "@fullcalendar/core";
+import dayGridPlugin, { DayGridView } from '@fullcalendar/daygrid'
 import ISelectionManager = powerbi.extensibility.ISelectionManager
+//import resourceTimelinePlugin, { ResourceTimelineView } from '@fullcalendar/resource-timeline'
+//import resourceDayGridPlugin from '@fullcalendar/resource-daygrid';
+import { createPopper, placements } from '@popperjs/core';
+import tippy from "tippy.js";
+import 'tippy.js/themes/light.css';
 
 export class calendarEvent {
   public id: string;
+  public grouping: string;
   public title: string;
   public backgroundColor: string;
   public textColor: string;
   public start: Date;
   public end: Date;
+  public tooltip = new Array();
   public allDay?: boolean = true;
   public selectionId: powerbi.visuals.ISelectionId;
 }
@@ -25,7 +32,7 @@ export interface State {
 
 //Defaults
 export const initialState: State = {
-  events: [], // [{id:"0",title:"Blank",start:new Date(),end:new Date(),allDay:true}]
+  events: [], // [{id:"0",grouping:"org1",title:"Blank",backgroundColor:"#f0f0f0",start:new Date(),end:new Date(),allDay:true}]
   //type: "dayGridWeek"
   type: "dayGrid30",
   selectionManager: null
@@ -64,12 +71,12 @@ export class ReactCalendar extends React.Component<{}, State> {
   
   handleEventClick = (arg) => {
 
-    console.info(arg.event.id);
+    //console.info(arg.event.id);
 
     //this is a huge pain in the ass, because react separates the html "magic" from the actual pbiviz code
     //find the selectionId in the array?
     let sid = this.state.events.find(o=>o.id===arg.event.id);
-    console.info(sid.selectionId);
+    //console.info(sid.selectionId);
     this.state.selectionManager
       .select(sid.selectionId,true);
       //.then(ids=>{});
@@ -104,6 +111,27 @@ export class ReactCalendar extends React.Component<{}, State> {
     //console.info("rendering : " + arg.event.id);
     c.id=arg.event.id;
     //todo - replace with identity column
+
+    //console.info(arg);
+    let sid = this.state.events.find(o=>o.id===arg.event.id);
+    
+    //make the formatting nicer
+    var ctnt: string = '<div data-tippy-root style="padding-top:20px;padding-bottom:20px;">'; //<div class="tippy-backdrop"></div><div class="tippy-arrow"></div>';
+    sid.tooltip.forEach((value:string)=>{
+        ctnt+= '<div class="tippy-content" style="padding-left:20px;padding-right:20px;">'+value+'</div>';
+      });
+    ctnt += '</div>'; //</div></div>';
+
+    tippy(arg.el,{
+      allowHTML: true,
+      theme:'light',
+      content:ctnt,
+      placement:'auto'
+    });
+    // createPopper(arg.el,tooltip, {
+    //   placement:'right'
+    // });
+    //debugger;
   }
 
   render() {
@@ -111,6 +139,7 @@ export class ReactCalendar extends React.Component<{}, State> {
     return (
       <div id="reactCalendar">
       <FullCalendar
+        //schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
         header={{
             left: 'prev,next today',
             center: 'title',
@@ -126,7 +155,7 @@ export class ReactCalendar extends React.Component<{}, State> {
         }
         eventClick={this.handleEventClick}
         defaultView={this.state.type}
-        plugins={[ dayGridPlugin ]} 
+        plugins={[ dayGridPlugin ]}  //resourceDayGridPlugin, resourceTimelinePlugin
         events={this.state.events}
         eventRender={this.handleEventRender}
       />

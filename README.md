@@ -35,6 +35,7 @@
 
 # Columns
 * Identity - currently not used (may be removed)
+* Grouping - (in development) used to group tasks into swimlanes
 * Title - controls text displayed in event
 * Color - controls the color of the event (currently requires HEX color)
 * Start - controls start date of event
@@ -53,19 +54,19 @@
 
 # Todo
 * Hard
-    * Priority 1 : grouping / swimlane view
+    * Priority 1 : grouping / swimlane / scheduler view
 * Easy
     * better CSS
     * handle long titles better (wrapping causes spacing issues)
 * Moderate
-    * tooltips (multi-column)
     * improve color column (allow named colors as well as hex)
-    * add configurable default background color
+        * add default color palette
+        * add configurable default background color
     * improve PBI interactions for events (filter/highlight/slice)
-    * views other than dayGridWeek, dayGridMonth, dayGrid30
     * add error checking (e.g. for dates and colors)
         * check table data types, handle gracefully
     * toggle allDay to allow for time-based views (currently always set to true)
+    * figure out best way to sort tooltips
 * Unknown
     * get settings working for defaultView
     * add other settings as needed?

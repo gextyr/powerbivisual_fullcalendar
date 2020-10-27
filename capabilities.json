@@ -4,7 +4,12 @@
             "displayName": "Identity",
             "name": "identity",
             "kind": "Grouping"
-        },        
+        },
+        {
+            "displayName": "Grouping",
+            "name": "grouping",
+            "kind": "Grouping"
+        },
         {
             "displayName": "Title",
             "name": "title",
@@ -31,11 +36,6 @@
             "kind": "Grouping"
         }
     ],
-    "drilldown": {
-        "roles": [
-            "title"
-        ]
-    },
     "tooltips":{
         "supportedTypes": {
             "default": true,
@@ -70,6 +70,9 @@
                     "identity": {
                         "max": 1
                     },
+                    "grouping": {
+                        "max": 1
+                    },
                     "title": {
                          "max": 1
                      },
@@ -93,6 +96,10 @@
                         {
                             "for": {
                                 "in": "identity"
+                            }
+                        },{
+                            "for": {
+                                "in": "grouping"
                             }
                         },{
                             "for": {

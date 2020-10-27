@@ -48,7 +48,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
     private selectionManager: ISelectionManager;
 
     constructor(options: VisualConstructorOptions) {
-        console.info("starting");
+        //console.info("starting");
         //this.host.tooltipService.enabled;
         this.reactRoot = React.createElement(ReactCalendar,{});
         this.target = options.element;
@@ -104,7 +104,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
         this.settings = VisualSettings.parse<VisualSettings>(this.dataView);
         //debugger;
         //console.info(this.settings.calendar.calendarType);
-        console.info("update");
+        //console.info("update");
         
         if (options.dataViews && options.dataViews[0]) {
             const dataView: DataView = options.dataViews[0];
@@ -127,38 +127,68 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                 //var valueFormatterFactory = vf;
 
                 //Get column indexes
-                var tIndex: number, cIndex: number, sIndex: number, eIndex: number;
+                var tIndex: number, cIndex: number, sIndex: number, eIndex: number, gIndex: number;
+                var ttIndex = new Array();
                 columns.forEach((column:DataViewMetadataColumn)=>{
                     tIndex=column.roles.title?column.index:tIndex;
                     cIndex=column.roles.color?column.index:cIndex;
                     sIndex=column.roles.start?column.index:sIndex;
                     eIndex=column.roles.end?column.index:eIndex;
-                    //console.info("indexes " + tIndex + " " + cIndex + " " + sIndex + " " + eIndex );
+                    gIndex=column.roles.grouping?column.index:gIndex;
+                    
+                    if(!column.roles.color && !column.roles.identity){
+                    //if(column.roles.tooltips){
+                        // put everything into tooltips except color/identity
+                        //ttIndex.push(column.index);
+
+                        ttIndex.push({
+                            index:column.index,
+                            format:column.format,
+                            display:column.displayName,
+                            isStart:column.roles.start,
+                            isEnd:column.roles.end
+                        })
+
+                        console.info(column);
+                    }
                 });
 
                 //Build new event array
                 rows.forEach((row: DataViewTableRow, rowIndex: number) => {
                     var start: Date = new Date(row[sIndex].toString());
                     var end:Date = new Date(row[eIndex]==null?row[sIndex].toString():row[eIndex].toString());
-                    var bgcolor:string = row[cIndex].toString()
-                    
+                    var bgcolor:string = row[cIndex].toString();
+                    var grouping:string = row[gIndex].toString();
+
+
+                    //TODO: figure out best way to sort tooltips
+                    var ttip: Array<string> = [];
+                    ttIndex.forEach((ttobj)=>{
+                        //move this logic to calendar.tsx
+                        if(ttobj.isEnd || ttobj.isStart)
+                        {
+                            //figure out how to use the format string provided by PBI
+                            ttip.push(ttobj.display + " : " + row[ttobj.index].toString().substring(0,10));
+                        } else {
+                            ttip.push(ttobj.display + " : " + row[ttobj.index].toString());
+                        }
+                        //ttip.push(row[ttIndexNum].toString());
+                    });
+
                     //auto-set text color based on brightness of background - REQUIRES HEX COLOR
                     //Note: a better way to do this would be to start with getComputedStyle of the background, 
                     //      then we can let the engine handle named colors vs hex vs rgb.
                     var txtcolor:string = this.getContrast(bgcolor);
 
-                    console.info("bgcolor " + bgcolor);
-                    console.info("txtcolor " + txtcolor);
-                    console.info("rowindex:" + rowIndex.toString());
-                    
-                    //debugger;
                     const event: calendarEvent = {
                         id:rowIndex.toString(),
+                        grouping:row[gIndex].toString(),
                         title:row[tIndex].toString(),
                         backgroundColor:bgcolor,
                         textColor:txtcolor,
                         start:start,
                         end:end,
+                        tooltip:ttip,
                         allDay:true
                         ,selectionId:this.host.createSelectionIdBuilder()
                             .withTable(table,rowIndex)
