@@ -9,6 +9,7 @@
 * Set up cert: 
     * pbiviz --install-cert
         * copy password
+        * open newly created cert file
         * "Current Machine"->"Next"
         * "Next"
         * paste password->"Next"
@@ -21,6 +22,7 @@
 # Build and Test
 * Start debugging:
     * pbiviz start
+    * visit https://localhost:8080/assets/status in your browser and allow access (self-signed cert)
 
 * Go to [powerbi service](https://www.powerbi.com)
 * Enable dev visual (in settings)
@@ -31,10 +33,12 @@
     * .pbviz file written to the dist folder
 
 # Columns
+* Identity - currently not used (may be removed)
 * Title - controls text displayed in event
 * Color - controls the color of the event (currently requires HEX color)
 * Start - controls start date of event
 * End - controls end data of event
+* Tool Tips - currently not used (will be used for tooltips)
 
 # Tips
 * Open f12 tools to see console
