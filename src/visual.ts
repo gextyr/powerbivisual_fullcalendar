@@ -149,7 +149,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                             isEnd:column.roles.end
                         })
 
-                        console.info(column);
+                        //console.info(column);
                     }
                 });
 
