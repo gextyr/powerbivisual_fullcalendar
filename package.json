@@ -1,0 +1,40 @@
+{
+  "name": "visual",
+  "scripts": {
+    "pbiviz": "pbiviz",
+    "start": "pbiviz start",
+    "package": "pbiviz package",
+    "lint": "tslint -c tslint.json -p tsconfig.json"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.6.0",
+    "@babel/runtime-corejs2": "7.6.0",
+    "@fullcalendar/core": "^4.4.0",
+    "@fullcalendar/daygrid": "^4.4.0",
+    "@fullcalendar/react": "^4.4.0",
+    "@types/bootstrap": "^4.3.1",
+    "@types/d3": "5.7.2",
+    "@types/jquery": "^3.3.33",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "bootstrap": "^4.4.1",
+    "core-js": "3.2.1",
+    "d3": "5.12.0",
+    "jquery": "^3.5.1",
+    "lodash": "^4.17.20",
+    "powerbi-visuals-api": "~2.6.1",
+    "powerbi-visuals-tools": "^3.1.15",
+    "react": "^16.12.0",
+    "react-calendar": "^2.19.2",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "ts-loader": "6.1.0",
+    "tslint": "^5.18.0",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "typescript": "3.6.3",
+    "webpack": "^4.41.6"
+  }
+}

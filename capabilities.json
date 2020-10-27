@@ -1,0 +1,125 @@
+{
+    "dataRoles": [
+        {
+            "displayName": "Identity",
+            "name": "identity",
+            "kind": "Grouping"
+        },        
+        {
+            "displayName": "Title",
+            "name": "title",
+            "kind": "Grouping"
+        },
+        {
+            "displayName": "Color",
+            "name": "color",
+            "kind": "Grouping"
+        },
+        {
+            "displayName": "Start Date",
+            "name": "start",
+            "kind": "Grouping"
+        },
+        {
+            "displayName": "End Date",
+            "name": "end",
+            "kind": "Grouping"
+        },
+        {
+            "displayName": "Tool Tips",
+            "name": "tooltips",
+            "kind": "Grouping"
+        }
+    ],
+    "drilldown": {
+        "roles": [
+            "title"
+        ]
+    },
+    "tooltips":{
+        "supportedTypes": {
+            "default": true,
+            "canvas": true
+        },
+        "roles": [
+            "tooltips"
+        ]
+    },
+    "objects": {
+        "calendar": {
+            "displayName": "Calendar",
+            "properties": {
+                "calendarType": {
+                    "displayName": "Type",
+                    "description": "Type of Calendar",
+                    "type": {
+                        "enumeration": [
+                            {"displayName": "Week", "displayNameKey": "week", "value": ",dayGridWeek"},
+                            {"displayName": "Month", "displayNameKey": "month", "value": "dayGridMonth"},
+                            {"displayName": "30Day", "displayNameKey": "30day", "value": "dayGrid30"}
+                        ]
+                    }
+                }
+            }
+        }
+    },
+     "dataViewMappings": [
+         {
+             "conditions": [
+                 {
+                    "identity": {
+                        "max": 1
+                    },
+                    "title": {
+                         "max": 1
+                     },
+                     "color": {
+                        "max": 1
+                     },
+                     "start": {
+                        "max": 1
+                     },
+                     "end": {
+                        "max": 1
+                     },
+                     "tooltips": {
+                        "max": 7
+                     }
+                 }
+             ],
+             "table": {
+                "rows": {
+                    "select": [
+                        {
+                            "for": {
+                                "in": "identity"
+                            }
+                        },{
+                            "for": {
+                                "in": "title"
+                            }
+                        },{
+                            "for": {
+                                "in": "color"
+                            }
+                        },{
+                            "for": {
+                                "in": "start"
+                            }
+                        },
+                        {
+                            "for": {
+                                "in": "end"
+                            }
+                        },
+                        {
+                            "for": {
+                                "in": "tooltips"
+                            }
+                        }
+                    ]
+                }
+             }
+         }
+     ]
+}

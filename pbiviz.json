@@ -1,0 +1,28 @@
+{
+    "visual": {
+        "name": "reactFullCalendar",
+        "displayName": "ReactFullCalendar",
+        "guid": "ReactFullCalendarB0AEB80186A04D4BBDA271CB47EAA9E7",
+        "visualClassName": "Visual",
+        "version": "0.0.2",
+        "description": "",
+        "supportUrl": "",
+        "gitHubUrl": ""
+    },
+    "apiVersion": "2.6.0",
+    "author": {
+        "name": "",
+        "email": ""
+    },
+    "assets": {
+        "icon": "assets/icon.png"
+    },
+    "externalJS": [
+        "node_modules/jquery/dist/jquery.min.js",
+        "node_modules/bootstrap/dist/js/bootstrap.min.js"
+    ],
+    "style": "style/visual.less",
+    "capabilities": "capabilities.json",
+    "dependencies": null,
+    "stringResources": []
+}
