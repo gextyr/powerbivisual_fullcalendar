@@ -48,9 +48,11 @@
 
 # Known bugs
 * BUG: For some reason, the hex background color is being converted to a named color in some cases, which causes the drillthrough to fail when all filters are kept, e.g. Color = "Red" filter fails, and the data set uses #ff0000 (can't currently reproduce)
-* BUG: Synchronizing after if you filter this viz, then another, then come back to this (calendar.tsx)
+* BUG: Synchronizing after if you filter this viz then another repro: filter this viz then another, then come back to this (calendar.tsx)
 
 # Todo
+* Hard
+    * Priority 1 : grouping / swimlane view
 * Easy
     * better CSS
     * handle long titles better (wrapping causes spacing issues)
@@ -59,12 +61,10 @@
     * improve color column (allow named colors as well as hex)
     * add configurable default background color
     * improve PBI interactions for events (filter/highlight/slice)
-    * views other than dayGridWeek dayGridMonth
-    * check table data types, handle gracefully
+    * views other than dayGridWeek, dayGridMonth, dayGrid30
     * add error checking (e.g. for dates and colors)
-    * toggle allDay (currently always set to true)
-* Hard
-    * grouping / swimlane view
+        * check table data types, handle gracefully
+    * toggle allDay to allow for time-based views (currently always set to true)
 * Unknown
     * get settings working for defaultView
     * add other settings as needed?
