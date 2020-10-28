@@ -50,11 +50,12 @@
 
 # Known bugs
 * BUG: For some reason, the hex background color is being converted to a named color in some cases, which causes the drillthrough to fail when all filters are kept, e.g. Color = "Red" filter fails, and the data set uses #ff0000 (can't currently reproduce)
-* BUG: Synchronizing after if you filter this viz then another repro: filter this viz then another, then come back to this (calendar.tsx)
+* BUG: Synchronizing highlighting after you filter this viz then another (can't currently reproduce)
 
 # Todo
 * Hard
     * Priority 1 : grouping / swimlane / scheduler view
+    * Possible: replace react code - there are too many disconnects and "hacky" things that have to be done to make it work right
 * Easy
     * better CSS
     * handle long titles better (wrapping causes spacing issues)
@@ -67,9 +68,6 @@
         * check table data types, handle gracefully
     * toggle allDay to allow for time-based views (currently always set to true)
     * figure out best way to sort tooltips
-    * make change to Calendar "type" setting functional
-    * reset viewport on calendar type change
-* Unknown
-    * get settings working for defaultView
-    * add other settings as needed?
-    * account for other features in FullCalendar
+    * make change to Calendar "type" (defaultView) setting functional
+        * reset viewport on calendar type change
+
