@@ -5,12 +5,12 @@ import { Visual } from "./visual";
 import { Calendar, DayHeader } from "@fullcalendar/core";
 import dayGridPlugin, { DayGridView } from '@fullcalendar/daygrid'
 import ISelectionManager = powerbi.extensibility.ISelectionManager
-//import resourceTimelinePlugin, { ResourceTimelineView } from '@fullcalendar/resource-timeline'
-//import resourceDayGridPlugin from '@fullcalendar/resource-daygrid';
+//import resourceTimelinePlugin from '@fullcalendar/resource-timeline'
 import { createPopper, placements } from '@popperjs/core';
 import tippy from "tippy.js";
 import 'tippy.js/themes/light.css';
 
+//this should be an interface, and it should probably live in visual.ts
 export class calendarEvent {
   public id: string;
   public grouping: string;
@@ -139,7 +139,6 @@ export class ReactCalendar extends React.Component<{}, State> {
     return (
       <div id="reactCalendar">
       <FullCalendar
-        //schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
         header={{
             left: 'prev,next today',
             center: 'title',
@@ -151,13 +150,18 @@ export class ReactCalendar extends React.Component<{}, State> {
             duration: {days: 30},
             buttonText: '30 Days',
             columnHeaderFormat:{day:'numeric'}
+          },
+          dayGridMonth:{
+            showNonCurrentDates:true
           }}
         }
         eventClick={this.handleEventClick}
         defaultView={this.state.type}
+        //schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
         plugins={[ dayGridPlugin ]}  //resourceDayGridPlugin, resourceTimelinePlugin
         events={this.state.events}
         eventRender={this.handleEventRender}
+
       />
       </div>
     )

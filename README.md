@@ -67,6 +67,8 @@
         * check table data types, handle gracefully
     * toggle allDay to allow for time-based views (currently always set to true)
     * figure out best way to sort tooltips
+    * make change to Calendar "type" setting functional
+    * reset viewport on calendar type change
 * Unknown
     * get settings working for defaultView
     * add other settings as needed?
