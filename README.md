@@ -56,7 +56,19 @@
 * BUG: For some reason, the hex background color is being converted to a named color in some cases, which causes the drillthrough to fail when all filters are kept, e.g. Color = "Red" filter fails, and the data set uses #ff0000 (can't currently reproduce)
 * BUG: Synchronizing highlighting after you filter this viz then another (can't currently reproduce)
 
-# Todo
+# Sync Visual Requirements 
+* (done) 30-day view (*with scroll to show additional days)  
+* (done) Ability to show text in/next to each activity’s bar 
+* (done) Ability to color-code bars based on some category 
+* (partial) Ability to display/highlight groupings of activities 
+	* "highlighting" can be done via power bi filters
+	* need to add "hightlight" interaction in addition to "filter" interaction
+	* need to add swim lane view
+* (not started) *Ability to display a symbol next to each activity’s text 
+	* need to add url column for image or similar
+	* alternatively, we can hard-code images and allow a text field to select
+
+# Other Backlog/TODO
 * Hard
     * Priority 1 : grouping / swimlane / scheduler view
     * Possible: replace react code - there are too many disconnects and "hacky" things that have to be done to make it work right
