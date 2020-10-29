@@ -7,12 +7,12 @@
 * Download and install Node.js:
     * https://nodejs.org/en/download/
 * Get the code: 
-    * git clone https://github.com/gextyr/powerbivisual_fullcalendar.git
+    * ```git clone https://github.com/gextyr/powerbivisual_fullcalendar.git```
 * Install PBI tooling:
-    * npm i powerbi-visuals-tools
+    * ```npm i powerbi-visuals-tools```
 
 * Set up cert: 
-    * pbiviz --install-cert
+    * ```pbiviz --install-cert```
         * copy password
         * open newly created cert file
         * "Current Machine"->"Next"
@@ -22,11 +22,11 @@
         * "Finish"
 
 * Install dependencies:
-    * npm i
+    * ```npm i```
 
 # Build and Test
 * Start debugging:
-    * pbiviz start
+    * ```pbiviz start```
     * visit https://localhost:8080/assets/status in your browser and allow access (self-signed cert)
 
 * Go to [powerbi service](https://www.powerbi.com)
@@ -34,7 +34,7 @@
 * Add dev visual to a new report
 
 * To package:
-    * pbiviz package
+    * ```pbiviz package```
     * .pbviz file written to the dist folder
 
 # Columns
