@@ -4,6 +4,8 @@
 
 # Getting Started
 * I recommend using Visual Studio Code, but you can use whatever editor you prefer
+* get the code: 
+    * git clone https://github.com/gextyr/powerbivisual_fullcalendar.git
 * Install PBI tooling:
     * npm i powerbi-visuals-tools
 
