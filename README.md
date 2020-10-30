@@ -87,3 +87,5 @@
     * make change to Calendar "type" (defaultView) setting functional
         * reset viewport on calendar type change
 
+# Sample Screen Capture
+![30 day gridview screen capture](/assets/screenshot.png)
