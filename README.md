@@ -68,6 +68,11 @@
 * (not started) *Ability to display a symbol next to each activity’s text 
 	* need to add url column for image or similar
 	* alternatively, we can hard-code images and allow a text field to select
+* The only required fields to render should be Title, Start and End
+* Provide a default color palette and allow you to select a custom color for each color group
+* Possible - scrollbar for future data.
+* Possible - “skip ahead/back N days” buttons
+* Possible - 1 month instead of 30 days, with first day being 1st of the month
 
 # Other Backlog/TODO
 * Hard

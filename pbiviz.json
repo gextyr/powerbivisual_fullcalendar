@@ -5,14 +5,14 @@
         "guid": "ReactFullCalendarB0AEB80186A04D4BBDA271CB47EAA9E7",
         "visualClassName": "Visual",
         "version": "0.0.2",
-        "description": "",
-        "supportUrl": "",
-        "gitHubUrl": ""
+        "description": "Basic Full Calendar Implementation in a Power BI Visual using React",
+        "supportUrl": "https://github.com/gextyr/powerbivisual_fullcalendar",
+        "gitHubUrl": "https://github.com/gextyr/powerbivisual_fullcalendar"
     },
     "apiVersion": "2.6.0",
     "author": {
-        "name": "",
-        "email": ""
+        "name": "Gregory Morris (Microsoft Federal)",
+        "email": "gmorris@microsoft.com"
     },
     "assets": {
         "icon": "assets/icon.png"
