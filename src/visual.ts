@@ -25,7 +25,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
  import * as React from "react";
  import * as ReactDOM from "react-dom";
  
- import { ReactCalendar, initialState, State, calendarEvent } from "./calendar";
+ import { ReactCalendar, initialState, State, calendarEvent, calendarResource } from "./calendar";
  
  //not using this yet
  import IViewport = powerbi.IViewport;
@@ -120,11 +120,12 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                 var table: DataViewTable = dataView.table;
                 var columns: DataViewMetadataColumn[] = table.columns;
                 var rows: DataViewTableRow[] = table.rows;
-                
+
                 //var categories = this.dataView.categorical.categories[0];
 
                 var events: calendarEvent[] = [];
                 //var valueFormatterFactory = vf;
+                var resources: calendarResource[] = [];
 
                 //Get column indexes
                 var tIndex: number, cIndex: number, sIndex: number, eIndex: number, gIndex: number;
@@ -196,11 +197,15 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     };
                     
                     events.push(event);
+
+                    if(!resources.find(x=>{x.id==row[gIndex].toString()})){
+                        resources.push({id:row[gIndex].toString(),title:row[gIndex].toString()});
+                    }
                 });
                     
                 //update calendar
                 //console.info("updating calendar: " + this.settings.calendar.calendarType);
-                ReactCalendar.update({events:events, type:this.settings.calendar.calendarType, selectionManager:this.selectionManager});
+                ReactCalendar.update({events:events, type:this.settings.calendar.calendarType, selectionManager:this.selectionManager, resources});
             }
         } else {
             this.clear();

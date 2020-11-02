@@ -1,14 +1,18 @@
 import * as React from "react";
 import FullCalendar from '@fullcalendar/react'
+//import { Calendar, DayHeader, View } from "@fullcalendar/core";
+//import resourceTimelinePlugin, { ResourceTimelineView }  from '@fullcalendar/resource-timeline'
+import resourceTimelinePlugin, { ResourceTimelineView } from '@fullcalendar/resource-timeline'
+//import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import powerbi from "powerbi-visuals-api";
 import { Visual } from "./visual";
-import { Calendar, DayHeader } from "@fullcalendar/core";
 import dayGridPlugin, { DayGridView } from '@fullcalendar/daygrid'
 import ISelectionManager = powerbi.extensibility.ISelectionManager
-//import resourceTimelinePlugin from '@fullcalendar/resource-timeline'
 import { createPopper, placements } from '@popperjs/core';
 import tippy from "tippy.js";
 import 'tippy.js/themes/light.css';
+import CalendarComponent from "@fullcalendar/core/CalendarComponent";
+import { xml } from "d3";
 
 //this should be an interface, and it should probably live in visual.ts
 export class calendarEvent {
@@ -24,10 +28,16 @@ export class calendarEvent {
   public selectionId: powerbi.visuals.ISelectionId;
 }
 
+export class calendarResource {
+  public id: string;
+  public title: string;  
+}
+
 export interface State {
   events: calendarEvent[],
   type?: string,
   selectionManager: ISelectionManager;
+  resources?: calendarResource[]
 }
 
 //Defaults
@@ -35,17 +45,22 @@ export const initialState: State = {
   events: [], // [{id:"0",grouping:"org1",title:"Blank",backgroundColor:"#f0f0f0",start:new Date(),end:new Date(),allDay:true}]
   //type: "dayGridWeek"
   type: "dayGrid30",
-  selectionManager: null
+  //type: "resourceDayGrid",
+  selectionManager: null,
+  resources: [{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
 }
 
-export class ReactCalendar extends React.Component<{}, State> {
+export class ReactCalendar extends React.Component{ //<{}, State> 
   constructor(props: any){
     super(props);
     this.state = initialState;
   }
 
   public state: State = initialState;
-  
+
+  //private calendarRef = React.createRef();
+  calendarComponentRef = React.createRef<FullCalendar>();
+
   private static updateCallback: (data: object) => void = null;
   
   public static update(newState: State) {
@@ -92,16 +107,6 @@ export class ReactCalendar extends React.Component<{}, State> {
     {
       c.style.opacity = "0.5";
     }
-    //debugger;
-    
-    //this is just some dummy color-changing code - it doesn't actually interact with Power BI
-    // var c: HTMLElement = arg.el.children[0];
-    // console.info("Clicked: " + arg.event.title);
-    // if(c.style.backgroundColor=="green"){
-    //   c.style.backgroundColor="blue";
-    // } else {
-    //   c.style.backgroundColor="green";
-    // } 
   }
 
   //I had to set the div's ID manually here for some reason
@@ -133,37 +138,108 @@ export class ReactCalendar extends React.Component<{}, State> {
     // });
     //debugger;
   }
+  addDays(date: Date, days: number): Date {
+    date.setDate(date.getDate() + days);
+    return date;
+  }
+  addMonths(date: Date, months: number): Date {
+    date.setDate(date.getMonth() + months);
+    return date;
+  }
+  handleNextClick = (arg) =>{
+    let calendarApi = this.calendarComponentRef.current!.getApi()
+    //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),1));
+    calendarApi.incrementDate({months:1});
+  }
+  handlePrevClick = (arg) =>{
+    let calendarApi = this.calendarComponentRef.current!.getApi()
+    //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),-1));
+    calendarApi.incrementDate({months:-1});
+  }
+  handleWindowResize = (arg)=>{
+    console.info("handleWindowResize");
+    //let calendarApi = this.calendarComponentRef.current!.getApi()
+    //console.info(arg);
+  }
+
+  handleViewSkeletonRender = (arg)=>{
+    console.info("handleViewSkeletonRender");
+    //console.info(arg);
+  }
+
+  handleDatesRender = (arg)=>{
+    console.info("handleDatesRender");
+    //console.info(arg);
+  }
+
+  getNow = ()=>{
+    let calendarApi = this.calendarComponentRef.current!.getApi()
+    return calendarApi.getDate().setDate(1);
+  }
+
+  public componentDidMount(){
+    console.info("componentDidMount");
+    let calendarApi = this.calendarComponentRef.current!.getApi();
+    calendarApi.gotoDate(this.getNow());
+    console.info(calendarApi);
+    console.info(calendarApi.view);
+  }
 
   render() {
+    console.info("render");
     //console.info("rendering type: " + this.state.type + " events: " + this.state.events.length);
-    return (
+    var x = (
       <div id="reactCalendar">
       <FullCalendar
         header={{
-            left: 'prev,next today',
+            left: 'prev,next myprev,mynext today',
             center: 'title',
-            right: 'dayGridMonth,dayGridWeek,dayGrid30'
+            right: 'resourceDayGrid dayGrid30' //dayGrid30 resourceDayGrid dayGridWeek
+        }}
+        customButtons={{
+          mynext: {
+            text:"Next",
+            click:this.handleNextClick,
+            icon:'right-single-arrow'
+          },
+          myprev: {
+            text:"Prev",
+            click:this.handlePrevClick,
+            icon:'left-single-arrow'
+          }
         }}
         views={{
           dayGrid30:{
             type:'dayGrid',
-            duration: {days: 30},
-            buttonText: '30 Days',
-            columnHeaderFormat:{day:'numeric'}
+            duration: {days: 31},
+            buttonText: 'Month',
+            columnHeaderFormat:{day:'numeric'},
+          },
+          resourceDayGrid:{
+            type:'resourceTimeline',
+            duration: {months: 1},
+            buttonText: 'Resource',
+            columnHeaderFormat:{day:'numeric'},
           },
           dayGridMonth:{
             showNonCurrentDates:true
           }}
         }
+        ref={ this.calendarComponentRef }
         eventClick={this.handleEventClick}
         defaultView={this.state.type}
+        plugins={[ dayGridPlugin, resourceTimelinePlugin ]} //dayGridPlugin, interactionPlugin 
         //schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
-        plugins={[ dayGridPlugin ]}  //resourceDayGridPlugin, resourceTimelinePlugin
+        //schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
+        //resources={this.state.resources}
         events={this.state.events}
         eventRender={this.handleEventRender}
-
+        windowResize={this.handleWindowResize}
+        viewSkeletonRender={this.handleViewSkeletonRender}
+        datesRender={this.handleDatesRender}
       />
       </div>
-    )
+    );
+    return x;
   }
 }
