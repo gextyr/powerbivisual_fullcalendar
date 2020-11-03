@@ -17,6 +17,7 @@
     "@fullcalendar/resource-daygrid": "^4.4.0",
     "@fullcalendar/resource-timegrid": "^4.4.0",
     "@fullcalendar/resource-timeline": "^4.4.0",
+    "@fullcalendar/timeline": "^4.4.0",
     "@popperjs/core": "^2.5.3",
     "@types/bootstrap": "^4.3.1",
     "@types/d3": "5.7.2",

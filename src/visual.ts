@@ -183,7 +183,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
 
                     const event: calendarEvent = {
                         id:rowIndex.toString(),
-                        grouping:row[gIndex].toString(),
+                        resourceId:row[gIndex].toString(),
                         title:row[tIndex].toString(),
                         backgroundColor:bgcolor,
                         textColor:txtcolor,

@@ -1,9 +1,10 @@
 import * as React from "react";
 import FullCalendar from '@fullcalendar/react'
 //import { Calendar, DayHeader, View } from "@fullcalendar/core";
-//import resourceTimelinePlugin, { ResourceTimelineView }  from '@fullcalendar/resource-timeline'
-import resourceTimelinePlugin, { ResourceTimelineView } from '@fullcalendar/resource-timeline'
-//import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
+//import resourceTimelinePlugin, { ResourceTimelineView } from '@fullcalendar/resource-timeline'
+import resourceTimelinePlugin from '@fullcalendar/resource-timeline'
+//import SpreadsheetHeader from '@fullcalendar/resource-timeline'
+import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import powerbi from "powerbi-visuals-api";
 import { Visual } from "./visual";
 import dayGridPlugin, { DayGridView } from '@fullcalendar/daygrid'
@@ -13,11 +14,13 @@ import tippy from "tippy.js";
 import 'tippy.js/themes/light.css';
 import CalendarComponent from "@fullcalendar/core/CalendarComponent";
 import { xml } from "d3";
+import { PluginDef } from "@fullcalendar/core";
+//import { ResourceTimelineView } from "@fullcalendar/resource-timeline";
 
 //this should be an interface, and it should probably live in visual.ts
 export class calendarEvent {
   public id: string;
-  public grouping: string;
+  public resourceId: string;
   public title: string;
   public backgroundColor: string;
   public textColor: string;
@@ -44,10 +47,10 @@ export interface State {
 export const initialState: State = {
   events: [], // [{id:"0",grouping:"org1",title:"Blank",backgroundColor:"#f0f0f0",start:new Date(),end:new Date(),allDay:true}]
   //type: "dayGridWeek"
-  type: "dayGrid30",
-  //type: "resourceDayGrid",
+  //type: "dayGrid30",
+  type: "resourceDayGrid",
   selectionManager: null,
-  resources: [{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
+  resources: [] //[{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
 }
 
 export class ReactCalendar extends React.Component{ //<{}, State> 
@@ -157,19 +160,19 @@ export class ReactCalendar extends React.Component{ //<{}, State>
     calendarApi.incrementDate({months:-1});
   }
   handleWindowResize = (arg)=>{
-    console.info("handleWindowResize");
+    //console.info("handleWindowResize");
     //let calendarApi = this.calendarComponentRef.current!.getApi()
     //console.info(arg);
   }
 
   handleViewSkeletonRender = (arg)=>{
-    console.info("handleViewSkeletonRender");
+    //console.info("handleViewSkeletonRender");
     //console.info(arg);
   }
 
   handleDatesRender = (arg)=>{
-    console.info("handleDatesRender");
-    //console.info(arg);
+    // console.info("handleDatesRender");
+    // console.info(arg);
   }
 
   getNow = ()=>{
@@ -178,60 +181,70 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   }
 
   public componentDidMount(){
-    console.info("componentDidMount");
+    //console.info("componentDidMount");
     let calendarApi = this.calendarComponentRef.current!.getApi();
     calendarApi.gotoDate(this.getNow());
-    console.info(calendarApi);
+    // console.info(calendarApi);
     console.info(calendarApi.view);
+    console.info(calendarApi.pluginSystem.hooks.views.resourceTimeline);
   }
 
   render() {
-    console.info("render");
+    //console.info("render");
     //console.info("rendering type: " + this.state.type + " events: " + this.state.events.length);
     var x = (
       <div id="reactCalendar">
       <FullCalendar
         header={{
-            left: 'prev,next myprev,mynext today',
+            left: 'prev,next today', //myprev,mynext 
             center: 'title',
-            right: 'resourceDayGrid dayGrid30' //dayGrid30 resourceDayGrid dayGridWeek
+            right: '' // 'resourceDayGrid' //dayGrid30 resourceDayGrid dayGridWeek
         }}
-        customButtons={{
-          mynext: {
-            text:"Next",
-            click:this.handleNextClick,
-            icon:'right-single-arrow'
-          },
-          myprev: {
-            text:"Prev",
-            click:this.handlePrevClick,
-            icon:'left-single-arrow'
-          }
-        }}
+        // customButtons={{
+        //   mynext: {
+        //     text:"Next",
+        //     click:this.handleNextClick,
+        //     icon:'right-single-arrow'
+        //   },
+        //   myprev: {
+        //     text:"Prev",
+        //     click:this.handlePrevClick,
+        //     icon:'left-single-arrow'
+        //   }
+        // }}
         views={{
-          dayGrid30:{
-            type:'dayGrid',
-            duration: {days: 31},
-            buttonText: 'Month',
-            columnHeaderFormat:{day:'numeric'},
-          },
+          // dayGrid30:{
+          //   type:'dayGrid',
+          //   duration: {days: 31},
+          //   buttonText: 'Month',
+          //   columnHeaderFormat:{day:'numeric'},
+          // },
           resourceDayGrid:{
             type:'resourceTimeline',
             duration: {months: 1},
             buttonText: 'Resource',
-            columnHeaderFormat:{day:'numeric'},
-          },
-          dayGridMonth:{
-            showNonCurrentDates:true
-          }}
-        }
+            //columnHeaderFormat:{day:'numeric'},
+            //columnHeaderText:function(date){
+            //  console.info(date);
+            //  return 'X';
+            //},
+            //columnHeaderHtml: function(date) {
+            //  return '<b>XX</b>';
+            //},
+            nowIndicator:true,
+          }
+        }}
+        //columnHeaderFormat={{day:'numeric'}}
+        resourceAreaWidth='10%' //TODO: make configurable
+        resourceLabelText='Orgs' //TODO: make configurable
+        height='auto'
         ref={ this.calendarComponentRef }
         eventClick={this.handleEventClick}
         defaultView={this.state.type}
-        plugins={[ dayGridPlugin, resourceTimelinePlugin ]} //dayGridPlugin, interactionPlugin 
+        plugins={[ resourceTimelinePlugin, interactionPlugin  ]} //dayGridPlugin, interactionPlugin 
         //schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
-        //schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
-        //resources={this.state.resources}
+        schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
+        resources={this.state.resources}
         events={this.state.events}
         eventRender={this.handleEventRender}
         windowResize={this.handleWindowResize}
