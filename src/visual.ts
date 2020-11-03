@@ -53,7 +53,16 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
         this.reactRoot = React.createElement(ReactCalendar,{});
         this.target = options.element;
         ReactDOM.render(this.reactRoot, this.target);
-               
+        //this is a horrible hack to get around FC's auto-choice of column headers.
+        //never mind - FC overrides this when something changes.
+        // var headers = $("th.fc-widget-header span");
+        // headers.each(function(key,value){
+        //   if(value.textContent != 'Orgs')
+        //   {
+        //     value.textContent = value.textContent.substring(0,2);
+        //   }
+        // });
+
         //add contextmenu drillthrough
         this.target.addEventListener("contextmenu",(arg)=>{
             //debugger;
@@ -205,7 +214,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     
                 //update calendar
                 //console.info("updating calendar: " + this.settings.calendar.calendarType);
-                ReactCalendar.update({events:events, type:this.settings.calendar.calendarType, selectionManager:this.selectionManager, resources});
+                ReactCalendar.update({events:events, header:this.settings.calendar.header, selectionManager:this.selectionManager, resources});
             }
         } else {
             this.clear();
@@ -242,3 +251,24 @@ export function logExceptions(): MethodDecorator {
         }
     }
 }
+
+//remove these from capabilities.json since we're just doing the timeline view
+//need to add new capabilities for other config options
+// "objects": {
+//   "calendar": {
+//       "displayName": "Calendar",
+//       "properties": {
+//           "calendarType": {
+//               "displayName": "Type",
+//               "description": "Type of Calendar",
+//               "type": {
+//                   "enumeration": [
+//                       {"displayName": "Week", "displayNameKey": "week", "value": ",dayGridWeek"},
+//                       {"displayName": "Month", "displayNameKey": "month", "value": "dayGridMonth"},
+//                       {"displayName": "30Day", "displayNameKey": "30day", "value": "dayGrid30"}
+//                   ]
+//               }
+//           }
+//       }
+//   }
+// },

@@ -49,16 +49,10 @@
         "calendar": {
             "displayName": "Calendar",
             "properties": {
-                "calendarType": {
-                    "displayName": "Type",
-                    "description": "Type of Calendar",
-                    "type": {
-                        "enumeration": [
-                            {"displayName": "Week", "displayNameKey": "week", "value": ",dayGridWeek"},
-                            {"displayName": "Month", "displayNameKey": "month", "value": "dayGridMonth"},
-                            {"displayName": "30Day", "displayNameKey": "30day", "value": "dayGrid30"}
-                        ]
-                    }
+                "header": {
+                    "displayName": "Grouping Title",
+                    "description": "Title to use for the grouping/swimlane column",
+                    "type": { "text": true }
                 }
             }
         }

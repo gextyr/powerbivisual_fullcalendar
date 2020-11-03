@@ -40,7 +40,8 @@ export interface State {
   events: calendarEvent[],
   type?: string,
   selectionManager: ISelectionManager;
-  resources?: calendarResource[]
+  resources?: calendarResource[];
+  header: string
 }
 
 //Defaults
@@ -48,9 +49,10 @@ export const initialState: State = {
   events: [], // [{id:"0",grouping:"org1",title:"Blank",backgroundColor:"#f0f0f0",start:new Date(),end:new Date(),allDay:true}]
   //type: "dayGridWeek"
   //type: "dayGrid30",
-  type: "resourceDayGrid",
+  type: "resourceTimeline",
   selectionManager: null,
-  resources: [] //[{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
+  resources: [], //[{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
+  header: "Orgs"
 }
 
 export class ReactCalendar extends React.Component{ //<{}, State> 
@@ -141,24 +143,24 @@ export class ReactCalendar extends React.Component{ //<{}, State>
     // });
     //debugger;
   }
-  addDays(date: Date, days: number): Date {
-    date.setDate(date.getDate() + days);
-    return date;
-  }
-  addMonths(date: Date, months: number): Date {
-    date.setDate(date.getMonth() + months);
-    return date;
-  }
-  handleNextClick = (arg) =>{
-    let calendarApi = this.calendarComponentRef.current!.getApi()
-    //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),1));
-    calendarApi.incrementDate({months:1});
-  }
-  handlePrevClick = (arg) =>{
-    let calendarApi = this.calendarComponentRef.current!.getApi()
-    //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),-1));
-    calendarApi.incrementDate({months:-1});
-  }
+  // addDays(date: Date, days: number): Date {
+  //   date.setDate(date.getDate() + days);
+  //   return date;
+  // }
+  // addMonths(date: Date, months: number): Date {
+  //   date.setDate(date.getMonth() + months);
+  //   return date;
+  // }
+  // handleNextClick = (arg) =>{
+  //   let calendarApi = this.calendarComponentRef.current!.getApi()
+  //   //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),1));
+  //   calendarApi.incrementDate({months:1});
+  // }
+  // handlePrevClick = (arg) =>{
+  //   let calendarApi = this.calendarComponentRef.current!.getApi()
+  //   //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),-1));
+  //   calendarApi.incrementDate({months:-1});
+  // }
   handleWindowResize = (arg)=>{
     //console.info("handleWindowResize");
     //let calendarApi = this.calendarComponentRef.current!.getApi()
@@ -184,9 +186,11 @@ export class ReactCalendar extends React.Component{ //<{}, State>
     //console.info("componentDidMount");
     let calendarApi = this.calendarComponentRef.current!.getApi();
     calendarApi.gotoDate(this.getNow());
-    // console.info(calendarApi);
-    console.info(calendarApi.view);
-    console.info(calendarApi.pluginSystem.hooks.views.resourceTimeline);
+    //console.info(calendarApi);
+    // console.info(calendarApi.view);
+    // console.info(calendarApi.pluginSystem.hooks.views.resourceTimeline);
+    // var x = calendarApi.formatDate(calendarApi.getDate(),{day:'numeric',weekday:'narrow'});
+    // console.info(x);
   }
 
   render() {
@@ -212,40 +216,36 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         //     icon:'left-single-arrow'
         //   }
         // }}
-        views={{
-          // dayGrid30:{
-          //   type:'dayGrid',
-          //   duration: {days: 31},
-          //   buttonText: 'Month',
-          //   columnHeaderFormat:{day:'numeric'},
-          // },
-          resourceDayGrid:{
-            type:'resourceTimeline',
-            duration: {months: 1},
-            buttonText: 'Resource',
-            ////the timeline view isn't respecting these - wtf.  
-            //columnHeaderFormat:{day:'numeric'},
-            //columnHeaderText:function(date){
-            //  console.info(date);
-            //  return 'X';
-            //},
-            //columnHeaderHtml: function(date) {
-            //  return '<b>XX</b>';
-            //},
-            nowIndicator:true,
-          }
-        }}
-        //columnHeaderFormat={{day:'numeric'}}
+        // views={{
+        //   // dayGrid30:{
+        //   //   type:'dayGrid',
+        //   //   duration: {days: 31},
+        //   //   buttonText: 'Month',
+        //   //   columnHeaderFormat:{day:'numeric'},
+        //   // },
+        //   resourceDayGrid:{
+        //     type:'resourceTimeline',
+        //     duration: {months: 1},
+        //     buttonText: 'Resource',
+        //     nowIndicator:true,
+        //   }
+        // }}
+        duration={{months:1}}
+        nowIndicator={true}
+        // nice... include a formatting option, then fucking ignore it.
+        // columnHeaderFormat={{
+        //   day: 'numeric'
+        // }}
+        //schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
+        schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
+        resources={this.state.resources}
         resourceAreaWidth='10%' //TODO: make configurable
-        resourceLabelText='Orgs' //TODO: make configurable
+        resourceLabelText={this.state.header}
         height='auto'
         ref={ this.calendarComponentRef }
         eventClick={this.handleEventClick}
         defaultView={this.state.type}
         plugins={[ resourceTimelinePlugin, interactionPlugin  ]} //dayGridPlugin, interactionPlugin 
-        //schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
-        schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
-        resources={this.state.resources}
         events={this.state.events}
         eventRender={this.handleEventRender}
         windowResize={this.handleWindowResize}
@@ -255,6 +255,8 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       />
       </div>
     );
+    // console.info("end render");
+    // console.info(x.props.children.props);
     return x;
   }
 }
