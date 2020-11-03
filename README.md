@@ -64,29 +64,28 @@
 * (done) Ability to display/highlight groupings of activities 
 	* (done) need to add swim lane view
 * (not started) *Ability to display a symbol next to each activity’s text 
-	* need to add url column for image or similar
-	* alternatively, we can hard-code images and allow a text field to select
-* The only required fields to render should be Title, Start and End
-* Provide a default color palette and allow you to select a custom color for each color group
-* Possible - “skip ahead/back N days” buttons
-* Possible - add "hightlight" interaction in addition to "filter" interaction
-* Possible - configurable resource column width (resourceAreaWidth) and header text (resourceLabelText)
-* Change column header format
+	* need to add url column and inject img tag
 
 # Other Backlog/TODO
-* Easy
-    * improve CSS (e.g. handle long titles better)
-* Moderate
-    * improve color column (allow named colors as well as hex)
-        * add default color palette
-        * add configurable default background color
-    * add error checking (e.g. for dates and colors)
-        * check table data types, handle gracefully
-    * toggle allDay to allow for time-based views (currently always set to true)
-    * figure out best way to sort tooltips
-* Hard
-    * possible: replace react code - there are too many disconnects and "hacky" things that have to be done to make it work right
-    * improve PBI interactions for events (add highlight in addition to filter)
+* Improve CSS (e.g. handle long titles better)
+* Add image/icon support
+* The only required fields to render should be Title, Start and End
+* “Skip ahead/back N days” buttons (instead of 1 month at a time)
+* Configurable resource column width (resourceAreaWidth)  (currently set to 30%)
+* Configurable header text (resourceLabelText) (currently set to “Orgs”)
+* Change column header format (currently day number and first letter of week day)
+* Improve "Color" column
+    * Allow named colors as well as hex
+    * Add default color palette + auto-select
+    * Add configurable default background color
+* Add error checking (e.g. for dates and colors)
+    * Check table data types, handle gracefully
+* Figure out best way to sort tooltips
+* Add other views (week view, time view, etc.)
+
+# Possible Future Backlog
+* Replace react code - there are too many disconnects and "hacky" things that have to be done to make it work right
+* Add "hightlight" interaction, in addition to "filter" interaction
 
 # Sample Screen Capture
 ![30 day gridview screen capture](/assets/screenshot.png)
