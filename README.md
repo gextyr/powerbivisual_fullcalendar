@@ -63,8 +63,7 @@
 * (done) Ability to color-code bars based on some category 
 * (partial) Ability to display/highlight groupings of activities 
 	* "highlighting" can be done via power bi filters
-	* need to add "hightlight" interaction in addition to "filter" interaction
-	* need to add swim lane view
+	* (in progress) need to add swim lane view
 * (not started) *Ability to display a symbol next to each activity’s text 
 	* need to add url column for image or similar
 	* alternatively, we can hard-code images and allow a text field to select
@@ -73,6 +72,8 @@
 * Possible - scrollbar for future data.
 * Possible - “skip ahead/back N days” buttons
 * Possible - 1 month instead of 30 days, with first day being 1st of the month
+* Possible - add "hightlight" interaction in addition to "filter" interaction
+* Possible - configurable resource column width
 
 # Other Backlog/TODO
 * Hard
