@@ -89,7 +89,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   
   handleEventClick = (arg) => {
 
-    //console.info(arg.event.id);
+    console.info(arg.event.id);
 
     //this is a huge pain in the ass, because react separates the html "magic" from the actual pbiviz code
     //find the selectionId in the array?
@@ -115,15 +115,15 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   //I had to set the div's ID manually here for some reason
   //FullCalendar doesn't do it for you, or at least it doesn't show up in the rendered HTML
   handleEventRender = (arg) => {
-    var c: HTMLElement = arg.el.children[0];
-    //console.info("rendering : " + arg.event.id);
-    c.id=arg.event.id;
-    //todo - replace with identity column
-
+    var c: HTMLElement = arg.el;//.children[0];
+    console.info("rendering : " + arg.event.id);
+    //c.id=arg.event.id;
+    c.setAttribute('fc_id',arg.event.id);
     //console.info(arg);
-    let sid = this.state.events.find(o=>o.id===arg.event.id);
     
-    //make the formatting nicer
+    //Add tooltip
+    let sid = this.state.events.find(o=>o.id===arg.event.id);
+    //TODO:make the formatting nicer
     var ctnt: string = '<div data-tippy-root style="padding-top:20px;padding-bottom:20px;">'; //<div class="tippy-backdrop"></div><div class="tippy-arrow"></div>';
     sid.tooltip.forEach((value:string)=>{
         ctnt+= '<div class="tippy-content" style="padding-left:20px;padding-right:20px;">'+value+'</div>';
@@ -223,6 +223,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
             type:'resourceTimeline',
             duration: {months: 1},
             buttonText: 'Resource',
+            ////the timeline view isn't respecting these - wtf.  
             //columnHeaderFormat:{day:'numeric'},
             //columnHeaderText:function(date){
             //  console.info(date);
@@ -250,6 +251,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         windowResize={this.handleWindowResize}
         viewSkeletonRender={this.handleViewSkeletonRender}
         datesRender={this.handleDatesRender}
+
       />
       </div>
     );

@@ -54,11 +54,11 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
         this.target = options.element;
         ReactDOM.render(this.reactRoot, this.target);
                
-        //add drillthrough
-        //TODO: the ID needs to be changed to the identity
+        //add contextmenu drillthrough
         this.target.addEventListener("contextmenu",(arg)=>{
+            //debugger;
             const selection: ISelectionId = this.host.createSelectionIdBuilder()
-                 .withTable(this.dataView.table,parseInt((arg.target as HTMLElement).id))
+                 .withTable(this.dataView.table,parseInt((arg.target as HTMLElement).getAttribute('fc_id')))
                  .createSelectionId();
 
             this.selectionManager.showContextMenu(selection?selection:{},{
@@ -67,7 +67,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
             });
             arg.preventDefault();
             //console.info("exiting context menu handler.");
-            var selectionId: ISelectionId;
+            //var selectionId: ISelectionId;
         });
 
         //work on tool tips
