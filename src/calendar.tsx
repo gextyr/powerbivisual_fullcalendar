@@ -116,7 +116,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   //FullCalendar doesn't do it for you, or at least it doesn't show up in the rendered HTML
   handleEventRender = (arg) => {
     var c: HTMLElement = arg.el;//.children[0];
-    console.info("rendering : " + arg.event.id);
+    //console.info("rendering : " + arg.event.id);
     //c.id=arg.event.id;
     c.setAttribute('fc_id',arg.event.id);
     //console.info(arg);
