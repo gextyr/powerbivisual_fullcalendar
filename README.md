@@ -61,38 +61,32 @@
 * (done) 30-day view (*with scroll to show additional days)  
 * (done) Ability to show text in/next to each activity’s bar 
 * (done) Ability to color-code bars based on some category 
-* (partial) Ability to display/highlight groupings of activities 
-	* "highlighting" can be done via power bi filters
-	* (in progress) need to add swim lane view
+* (done) Ability to display/highlight groupings of activities 
+	* (done) need to add swim lane view
 * (not started) *Ability to display a symbol next to each activity’s text 
 	* need to add url column for image or similar
 	* alternatively, we can hard-code images and allow a text field to select
 * The only required fields to render should be Title, Start and End
 * Provide a default color palette and allow you to select a custom color for each color group
-* Possible - scrollbar for future data.
 * Possible - “skip ahead/back N days” buttons
-* Possible - 1 month instead of 30 days, with first day being 1st of the month
 * Possible - add "hightlight" interaction in addition to "filter" interaction
-* Possible - configurable resource column width
+* Possible - configurable resource column width (resourceAreaWidth) and header text (resourceLabelText)
+* Change column header format
 
 # Other Backlog/TODO
-* Hard
-    * Priority 1 : grouping / swimlane / scheduler view
-    * Possible: replace react code - there are too many disconnects and "hacky" things that have to be done to make it work right
 * Easy
-    * better CSS
-    * handle long titles better (wrapping causes spacing issues)
+    * improve CSS (e.g. handle long titles better)
 * Moderate
     * improve color column (allow named colors as well as hex)
         * add default color palette
         * add configurable default background color
-    * improve PBI interactions for events (filter/highlight/slice)
     * add error checking (e.g. for dates and colors)
         * check table data types, handle gracefully
     * toggle allDay to allow for time-based views (currently always set to true)
     * figure out best way to sort tooltips
-    * make change to Calendar "type" (defaultView) setting functional
-        * reset viewport on calendar type change
+* Hard
+    * possible: replace react code - there are too many disconnects and "hacky" things that have to be done to make it work right
+    * improve PBI interactions for events (add highlight in addition to filter)
 
 # Sample Screen Capture
 ![30 day gridview screen capture](/assets/screenshot.png)
