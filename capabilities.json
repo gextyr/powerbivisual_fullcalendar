@@ -53,6 +53,11 @@
                     "displayName": "Grouping Title",
                     "description": "Title to use for the grouping/swimlane column",
                     "type": { "text": true }
+                },
+                "headerWidth": {
+                    "displayName": "Grouping Area Width %",
+                    "description": "The percent width of the grouping area.",
+                    "type": { "numeric": true }
                 }
             }
         }

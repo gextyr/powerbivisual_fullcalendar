@@ -214,7 +214,12 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     
                 //update calendar
                 //console.info("updating calendar: " + this.settings.calendar.calendarType);
-                ReactCalendar.update({events:events, header:this.settings.calendar.header, selectionManager:this.selectionManager, resources});
+                ReactCalendar.update({
+                    events:events, 
+                    header:this.settings.calendar.header, 
+                    headerWidth:this.settings.calendar.headerWidth,
+                    selectionManager:this.selectionManager, 
+                    resources});
             }
         } else {
             this.clear();

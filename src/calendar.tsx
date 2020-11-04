@@ -41,7 +41,8 @@ export interface State {
   type?: string,
   selectionManager: ISelectionManager;
   resources?: calendarResource[];
-  header: string
+  header: string,
+  headerWidth: number
 }
 
 //Defaults
@@ -51,8 +52,9 @@ export const initialState: State = {
   //type: "dayGrid30",
   type: "resourceTimeline",
   selectionManager: null,
-  resources: [], //[{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
-  header: "Orgs"
+  resources: [{id:"NA",title:"NA"}], //[{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
+  header: "Orgs",
+  headerWidth: 10
 }
 
 export class ReactCalendar extends React.Component{ //<{}, State> 
@@ -236,10 +238,10 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         // columnHeaderFormat={{
         //   day: 'numeric'
         // }}
-        //schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
-        schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
+        schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
+        //schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
         resources={this.state.resources}
-        resourceAreaWidth='10%' //TODO: make configurable
+        resourceAreaWidth={this.state.headerWidth.toString()+'%'}
         resourceLabelText={this.state.header}
         height='auto'
         ref={ this.calendarComponentRef }
@@ -251,7 +253,6 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         windowResize={this.handleWindowResize}
         viewSkeletonRender={this.handleViewSkeletonRender}
         datesRender={this.handleDatesRender}
-
       />
       </div>
     );
