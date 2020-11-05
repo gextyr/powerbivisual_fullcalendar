@@ -28,6 +28,7 @@ export class calendarEvent {
   public end: Date;
   public tooltip = new Array();
   public allDay?: boolean = true;
+  public image?: string;
   public selectionId: powerbi.visuals.ISelectionId;
 }
 
@@ -93,7 +94,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   
   handleEventClick = (arg) => {
 
-    console.info(arg.event.id);
+    //console.info(arg.event.id);
 
     //this is a huge pain in the ass, because react separates the html "magic" from the actual pbiviz code
     //find the selectionId in the array?
@@ -124,9 +125,12 @@ export class ReactCalendar extends React.Component{ //<{}, State>
     //c.id=arg.event.id;
     c.setAttribute('fc_id',arg.event.id);
     //console.info(arg);
+    //console.info(c);
     
-    //Add tooltip
+    //find the event
     let sid = this.state.events.find(o=>o.id===arg.event.id);
+
+    //Add tooltip
     //TODO:make the formatting nicer
     var ctnt: string = '<div data-tippy-root style="padding-top:20px;padding-bottom:20px;">'; //<div class="tippy-backdrop"></div><div class="tippy-arrow"></div>';
     sid.tooltip.forEach((value:string)=>{
@@ -134,7 +138,14 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       });
     ctnt += '</div>'; //</div></div>';
 
-    tippy(arg.el,{
+    //Add image
+    let calendarApi = this.calendarComponentRef.current!.getApi(); 
+    var i = document.createElement('img');
+    i.src=sid.image;
+    c.childNodes[0].appendChild(i);
+//debugger;
+
+    tippy(c,{
       allowHTML: true,
       theme:'light',
       content:ctnt,
@@ -184,7 +195,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
     return calendarApi.getDate().setDate(1);
   }
 
-  public componentDidMount(){
+  componentDidMount(){
     //console.info("componentDidMount");
     let calendarApi = this.calendarComponentRef.current!.getApi();
     calendarApi.gotoDate(this.getNow());
@@ -194,6 +205,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
     // var x = calendarApi.formatDate(calendarApi.getDate(),{day:'numeric',weekday:'narrow'});
     // console.info(x);
   }
+  
 
   render() {
     //console.info("render");
@@ -238,6 +250,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         // columnHeaderFormat={{
         //   day: 'numeric'
         // }}
+        nextDayThreshold='09:00:00'
         schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
         //schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
         resources={this.state.resources}

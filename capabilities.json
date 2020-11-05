@@ -31,6 +31,11 @@
             "kind": "Grouping"
         },
         {
+            "displayName": "Image URL",
+            "name": "image",
+            "kind": "Grouping"
+        },
+        {
             "displayName": "Tool Tips",
             "name": "tooltips",
             "kind": "Grouping"
@@ -84,6 +89,9 @@
                      "end": {
                         "max": 1
                      },
+                     "image": {
+                        "max": 1
+                     },
                      "tooltips": {
                         "max": 7
                      }
@@ -116,6 +124,11 @@
                         {
                             "for": {
                                 "in": "end"
+                            }
+                        },
+                        {
+                            "for": {
+                                "in": "image"
                             }
                         },
                         {

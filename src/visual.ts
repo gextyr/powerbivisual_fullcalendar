@@ -137,7 +137,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                 var resources: calendarResource[] = [];
 
                 //Get column indexes
-                var tIndex: number, cIndex: number, sIndex: number, eIndex: number, gIndex: number;
+                var tIndex: number, cIndex: number, sIndex: number, eIndex: number, gIndex: number, iIndex: number;
                 var ttIndex = new Array();
                 columns.forEach((column:DataViewMetadataColumn)=>{
                     tIndex=column.roles.title?column.index:tIndex;
@@ -145,8 +145,9 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     sIndex=column.roles.start?column.index:sIndex;
                     eIndex=column.roles.end?column.index:eIndex;
                     gIndex=column.roles.grouping?column.index:gIndex;
+                    iIndex=column.roles.image?column.index:iIndex;
                     
-                    if(!column.roles.color && !column.roles.identity){
+                    if(!column.roles.color && !column.roles.identity && !column.roles.image){
                     //if(column.roles.tooltips){
                         // put everything into tooltips except color/identity
                         //ttIndex.push(column.index);
@@ -166,15 +167,21 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                 //Build new event array
                 rows.forEach((row: DataViewTableRow, rowIndex: number) => {
                     var start: Date = new Date(row[sIndex].toString());
-                    var end:Date = new Date(row[eIndex]==null?row[sIndex].toString():row[eIndex].toString());
+                    //var end:Date = new Date(row[eIndex]==null?row[sIndex].toString():row[eIndex].toString());
+                    //replace end date with "end of day"
+                    var end:Date = new Date(row[eIndex]==null?new Date(row[sIndex].toString().substring(0,10)+"T23:59:59.000"):new Date(row[eIndex].toString().substring(0,10)+"T23:59:59.000"));
+                    //console.info(new Date(row[eIndex].toString().substring(0,10)+"T23:59:59.000"));
+                    // console.info(rowIndex.toString());
+                    // console.info(start);
+                    // console.info(end);
                     var bgcolor:string = row[cIndex].toString();
                     var grouping:string = row[gIndex].toString();
+                    var imageStr:string = iIndex==null||row[iIndex]==null?"":row[iIndex].toString();
 
-
-                    //TODO: figure out best way to sort tooltips
+                   //TODO: figure out best way to sort tooltips
                     var ttip: Array<string> = [];
                     ttIndex.forEach((ttobj)=>{
-                        //move this logic to calendar.tsx
+                        //move this formatting logic to calendar.tsx?
                         if(ttobj.isEnd || ttobj.isStart)
                         {
                             //figure out how to use the format string provided by PBI
@@ -199,14 +206,16 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                         start:start,
                         end:end,
                         tooltip:ttip,
-                        allDay:true
-                        ,selectionId:this.host.createSelectionIdBuilder()
+                        allDay:true,
+                        image:imageStr,
+                        selectionId:this.host.createSelectionIdBuilder()
                             .withTable(table,rowIndex)
                             .createSelectionId()
                     };
                     
                     events.push(event);
 
+                    //add resources if they haven't been added already
                     if(!resources.find(x=>{x.id==row[gIndex].toString()})){
                         resources.push({id:row[gIndex].toString(),title:row[gIndex].toString()});
                     }
