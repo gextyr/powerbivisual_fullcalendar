@@ -71,6 +71,7 @@
     * Check table data types, handle gracefully
 * Figure out best way to sort tooltips
 * Better handling for "default" single group
+* Configure image height
 
 # Possible Future Backlog
 * Replace react code - there are too many disconnects and "hacky" things that have to be done to make it work right
