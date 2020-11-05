@@ -57,18 +57,20 @@
 # Possible Issues
 * BUG: For some reason, the hex background color is being converted to a named color in some cases, which causes the drillthrough to fail when all filters are kept, e.g. Color = "Red" filter fails, and the data set uses #ff0000 (can't currently reproduce)
 * BUG: Synchronizing highlighting after you filter this viz then another (can't currently reproduce)
+* BUG: repro: add all fields, then remove "grouping" and the visual doesn't reload... 
 
 # Other Backlog/TODO
 * The only required fields to render should be Title and Start
 * “Skip ahead/back N days” buttons (instead of 1 month at a time)
 * Change column header format (currently day number and first letter of week day)
-* Improve "Color" column
+* Improve "Color" column functionality
     * Allow named colors as well as hex
     * Add default color palette + auto-select
     * Add configurable default background color
 * Add error checking (e.g. for dates and colors)
     * Check table data types, handle gracefully
 * Figure out best way to sort tooltips
+* Better handling for "default" single group
 
 # Possible Future Backlog
 * Replace react code - there are too many disconnects and "hacky" things that have to be done to make it work right
