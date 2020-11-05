@@ -218,6 +218,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
             center: 'title',
             right: '' // 'resourceDayGrid' //dayGrid30 resourceDayGrid dayGridWeek
         }}
+        
         // customButtons={{
         //   mynext: {
         //     text:"Next",
@@ -250,7 +251,6 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         // columnHeaderFormat={{
         //   day: 'numeric'
         // }}
-        nextDayThreshold='09:00:00'
         schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
         //schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
         resources={this.state.resources}

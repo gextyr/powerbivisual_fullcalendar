@@ -170,6 +170,12 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     //var end:Date = new Date(row[eIndex]==null?row[sIndex].toString():row[eIndex].toString());
                     //replace end date with "end of day"
                     var end:Date = new Date(row[eIndex]==null?new Date(row[sIndex].toString().substring(0,10)+"T23:59:59.000"):new Date(row[eIndex].toString().substring(0,10)+"T23:59:59.000"));
+                    
+                    //this is an ugly hack, and there is probably a better way to handle this in full calendar  - nextDayThreshold?
+                    if(start!=end){
+                        end.setDate(end.getDate()+1);
+                    }
+
                     //console.info(new Date(row[eIndex].toString().substring(0,10)+"T23:59:59.000"));
                     // console.info(rowIndex.toString());
                     // console.info(start);
