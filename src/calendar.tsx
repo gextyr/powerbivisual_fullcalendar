@@ -53,7 +53,7 @@ export const initialState: State = {
   //type: "dayGrid30",
   type: "resourceTimeline",
   selectionManager: null,
-  resources: [{id:"NA",title:"NA"}], //[{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
+  resources: [{id:null,title:"NA"}], //[{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
   header: "Orgs",
   headerWidth: 10
 }

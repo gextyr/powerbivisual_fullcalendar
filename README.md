@@ -39,12 +39,13 @@
     * .pbviz file written to the dist folder
 
 # Columns
-* Identity - currently not used (may be removed)
-* Grouping - (in development) used to group tasks into swimlanes
+* Identity - ideally unique - used as drillthrough filter
+* Grouping - used to group tasks into swimlanes
 * Title - controls text displayed in event
 * Color - controls the color of the event (currently requires HEX color)
 * Start - controls start date of event
 * End - controls end data of event
+* Image - url (or base64 encoded image) to display in-line with the title
 * Tool Tips - currently not used (will be used for tooltips)
 
 # Tips
@@ -53,26 +54,13 @@
 * Use "debugger" keyword to break in the f12 debugger
 * Saving a file will auto-rebuild
 
-# Known bugs
+# Possible Issues
 * BUG: For some reason, the hex background color is being converted to a named color in some cases, which causes the drillthrough to fail when all filters are kept, e.g. Color = "Red" filter fails, and the data set uses #ff0000 (can't currently reproduce)
 * BUG: Synchronizing highlighting after you filter this viz then another (can't currently reproduce)
 
-# Sync Visual Requirements 
-* (done) 30-day view (*with scroll to show additional days)  
-* (done) Ability to show text in/next to each activity’s bar 
-* (done) Ability to color-code bars based on some category 
-* (done) Ability to display/highlight groupings of activities 
-	* (done) need to add swim lane view
-* (not started) *Ability to display a symbol next to each activity’s text 
-	* need to add url column and inject img tag
-
 # Other Backlog/TODO
-* Improve CSS (e.g. handle long titles better)
-* Add image/icon support
-* The only required fields to render should be Title, Start and End
+* The only required fields to render should be Title and Start
 * “Skip ahead/back N days” buttons (instead of 1 month at a time)
-* Configurable resource column width (resourceAreaWidth)  (currently set to 30%)
-* Configurable header text (resourceLabelText) (currently set to “Orgs”)
 * Change column header format (currently day number and first letter of week day)
 * Improve "Color" column
     * Allow named colors as well as hex
@@ -81,7 +69,6 @@
 * Add error checking (e.g. for dates and colors)
     * Check table data types, handle gracefully
 * Figure out best way to sort tooltips
-* Add other views (week view, time view, etc.)
 
 # Possible Future Backlog
 * Replace react code - there are too many disconnects and "hacky" things that have to be done to make it work right
