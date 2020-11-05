@@ -140,9 +140,12 @@ export class ReactCalendar extends React.Component{ //<{}, State>
 
     //Add image
     let calendarApi = this.calendarComponentRef.current!.getApi(); 
+    var s = document.createElement('span');
     var i = document.createElement('img');
+    i.className="fc-titleimage";
     i.src=sid.image;
-    c.childNodes[0].appendChild(i);
+    s.appendChild(i);
+    c.childNodes[0].appendChild(s);
 //debugger;
 
     tippy(c,{
