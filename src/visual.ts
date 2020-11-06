@@ -53,6 +53,10 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
         this.reactRoot = React.createElement(ReactCalendar,{});
         this.target = options.element;
         ReactDOM.render(this.reactRoot, this.target);
+
+
+        //this.viewport = 
+
         //this is a horrible hack to get around FC's auto-choice of column headers.
         //never mind - FC overrides this when something changes.
         // var headers = $("th.fc-widget-header span");
@@ -105,7 +109,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
         var yiq = ((r*299)+(g*587)+(b*114))/1000;
         return (yiq >= 128) ? 'black' : 'white';
     }
-    
+
     @logExceptions()
     public update(options: VisualUpdateOptions) {
         this.dataView=options.dataViews[0];
@@ -118,7 +122,6 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
         if (options.dataViews && options.dataViews[0]) {
             const dataView: DataView = options.dataViews[0];
 
-            //Not using this yet
             this.viewport = options.viewport;
             const { width, height } = this.viewport;
             //console.info("viewport height: " + this.viewport.height);
@@ -228,6 +231,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     }
                 });
                     
+                console.info("viewport.height: "+this.viewport.height);
                 //update calendar
                 //console.info("updating calendar: " + this.settings.calendar.calendarType);
                 ReactCalendar.update({
@@ -248,6 +252,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
     }
     
     private static parseSettings(dataView: DataView): VisualSettings {
+        console.info("parseSettings");
         return <VisualSettings>VisualSettings.parse(dataView);
     }
 

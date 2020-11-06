@@ -9,7 +9,7 @@ import powerbi from "powerbi-visuals-api";
 import { Visual } from "./visual";
 import dayGridPlugin, { DayGridView } from '@fullcalendar/daygrid'
 import ISelectionManager = powerbi.extensibility.ISelectionManager
-import { createPopper, placements } from '@popperjs/core';
+import { createPopper, placements, viewport } from '@popperjs/core';
 import tippy from "tippy.js";
 import 'tippy.js/themes/light.css';
 import CalendarComponent from "@fullcalendar/core/CalendarComponent";
@@ -56,7 +56,8 @@ export const initialState: State = {
   selectionManager: null,
   resources: [{id:null,title:"NA"}], //[{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
   header: "Orgs",
-  headerWidth: 10
+  headerWidth: 10,
+  height:100
 }
 
 export class ReactCalendar extends React.Component{ //<{}, State> 
@@ -214,6 +215,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   
 
   render() {
+    console.info("height:" + this.state.height);
     //console.info("render");
     //console.info("rendering type: " + this.state.type + " events: " + this.state.events.length);
     var x = (
@@ -262,7 +264,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         resources={this.state.resources}
         resourceAreaWidth={this.state.headerWidth.toString()+'%'}
         resourceLabelText={this.state.header}
-        height={this.state.height}
+        height={this.state.height!=undefined?this.state.height:50}
         ref={ this.calendarComponentRef }
         eventClick={this.handleEventClick}
         defaultView={this.state.type}
