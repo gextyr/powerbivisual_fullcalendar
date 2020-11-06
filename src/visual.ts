@@ -121,6 +121,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
             //Not using this yet
             this.viewport = options.viewport;
             const { width, height } = this.viewport;
+            //console.info("viewport height: " + this.viewport.height);
             
             this.settings = VisualSettings.parse(dataView) as VisualSettings;
             const object = this.settings.calendar;
@@ -234,6 +235,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     header:this.settings.calendar.header, 
                     headerWidth:this.settings.calendar.headerWidth,
                     selectionManager:this.selectionManager, 
+                    height:this.viewport.height,
                     resources});
             }
         } else {

@@ -43,7 +43,8 @@ export interface State {
   selectionManager: ISelectionManager;
   resources?: calendarResource[];
   header: string,
-  headerWidth: number
+  headerWidth: number,
+  height?: number
 }
 
 //Defaults
@@ -261,7 +262,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         resources={this.state.resources}
         resourceAreaWidth={this.state.headerWidth.toString()+'%'}
         resourceLabelText={this.state.header}
-        height='auto'
+        height={this.state.height}
         ref={ this.calendarComponentRef }
         eventClick={this.handleEventClick}
         defaultView={this.state.type}
