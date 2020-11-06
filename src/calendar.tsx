@@ -44,7 +44,7 @@ export interface State {
   resources?: calendarResource[];
   header: string,
   headerWidth: number,
-  height?: number
+  height?: number | 'auto'
 }
 
 //Defaults
@@ -57,7 +57,7 @@ export const initialState: State = {
   resources: [{id:null,title:"NA"}], //[{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
   header: "Orgs",
   headerWidth: 10,
-  height:100
+  height:'auto'
 }
 
 export class ReactCalendar extends React.Component{ //<{}, State> 
