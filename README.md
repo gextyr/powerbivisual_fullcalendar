@@ -5,12 +5,16 @@
 
 # Getting Started
 * I recommend using Visual Studio Code, but you can use whatever editor you prefer
+
+* PBI Docs [here](https://docs.microsoft.com/en-us/power-bi/developer/visuals/develop-circle-card)
 * Download and install Node.js:
     * https://nodejs.org/en/download/
 * Get the code: 
     * ```git clone https://github.com/gextyr/powerbivisual_fullcalendar.git```
 * Install PBI tooling:
     * ```npm i powerbi-visuals-tools```
+    * This installs the tooling to create, debug, and package new Power BI visuals
+    * Note: To create a new project from scratch, use ```pbiviz new ProjectName```
 
 * Set up cert: 
     * ```pbiviz --install-cert```
