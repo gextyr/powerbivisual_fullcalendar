@@ -74,6 +74,7 @@
 * Configure image height
 * Add Image to Tool Tips popup
 * Move Image to _before_ title text instead of after
+    * Image positioning currently inconsistent
 
 # Possible Future Backlog
 * Replace react code - there are too many disconnects and "hacky" things that have to be done to make it work right
