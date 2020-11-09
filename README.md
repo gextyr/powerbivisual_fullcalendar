@@ -58,6 +58,8 @@
 * BUG: For some reason, the hex background color is being converted to a named color in some cases, which causes the drillthrough to fail when all filters are kept, e.g. Color = "Red" filter fails, and the data set uses #ff0000 (can't currently reproduce)
 * BUG: Synchronizing highlighting after you filter this viz then another (can't currently reproduce)
 * BUG: repro: add all fields, then remove "grouping" and the visual doesn't reload... 
+* BUG: the scrollbars do not show up by default in Power BI Desktop until the visual is modified - they do in Powerbi.com using dev visual
+    * It seems the viewport height is not yet set during the initial update/render cycle
 
 # Other Backlog/TODO
 * The only required fields to render should be Title and Start
