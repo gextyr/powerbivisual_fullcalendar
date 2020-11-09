@@ -186,17 +186,27 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     // console.info(end);
                     var bgcolor:string = row[cIndex].toString();
                     var grouping:string = row[gIndex].toString();
+
+                    //Add icon to tooltip as first object
                     var imageStr:string = iIndex==null||row[iIndex]==null?"":row[iIndex].toString();
+                    var s = document.createElement('span');
+                    var i = document.createElement('img');
+                    i.className="fc-titleimage";
+                    i.src=imageStr;
+                    s.appendChild(i);
 
                    //TODO: figure out best way to sort tooltips
                     var ttip: Array<string> = [];
+                    ttip.push(s.outerHTML);
+                    
                     ttIndex.forEach((ttobj)=>{
                         //move this formatting logic to calendar.tsx?
                         if(ttobj.isEnd || ttobj.isStart)
                         {
                             //figure out how to use the format string provided by PBI
                             ttip.push(ttobj.display + " : " + row[ttobj.index].toString().substring(0,10));
-                        } else {
+                        }
+                        else {
                             ttip.push(ttobj.display + " : " + row[ttobj.index].toString());
                         }
                         //ttip.push(row[ttIndexNum].toString());
@@ -298,4 +308,4 @@ export function logExceptions(): MethodDecorator {
 //           }
 //       }
 //   }
-// },
+// },      
