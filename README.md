@@ -63,13 +63,9 @@
 
 # Other Backlog/TODO
 * !! Configurable number of days/months to show (currently hardcoded to 1 month)
-* !! Change column header format (currently day number and first letter of week day)
-    * Need to make the columns more narrow - ideally 31 days should fit without scrolling
 * !! Sort Tooltips:
     * Title, Grouping, Start Date, End Date, anything in "Tooltips" field
     * Add Image to Tool Tips popup
-* !! Move Image to _before_ title text instead of after
-    * Image positioning currently inconsistent
 * ! The only required fields to render should be Title and Start
 * ! “Skip ahead/back N days” buttons (instead of only 1 month at a time)
     * May need to add logic to base ahead/back function on # of days/months shown - e.g. scroll vs refresh

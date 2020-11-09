@@ -148,8 +148,8 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       i.className="fc-titleimage";
       i.src=sid.image;
       s.appendChild(i);
-      c.childNodes[0].appendChild(s);
-      //c.childNodes[0].insertBefore(s, c.childNodes[0].firstChild);
+      //c.childNodes[0].appendChild(s);
+      c.childNodes[0].insertBefore(s, c.childNodes[0].firstChild);
     }
 //debugger;
 
