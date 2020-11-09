@@ -149,6 +149,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       i.src=sid.image;
       s.appendChild(i);
       c.childNodes[0].appendChild(s);
+      //c.childNodes[0].insertBefore(s, c.childNodes[0].firstChild);
     }
 //debugger;
 
@@ -223,10 +224,9 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       <FullCalendar
         header={{
             left: 'prev,next today', //myprev,mynext 
-            center: 'title',
+            //center: 'title',
             right: '' // 'resourceDayGrid' //dayGrid30 resourceDayGrid dayGridWeek
         }}
-        
         // customButtons={{
         //   mynext: {
         //     text:"Next",
@@ -256,9 +256,13 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         duration={{months:1}}
         nowIndicator={true}
         // nice... include a formatting option, then fucking ignore it.
-        // columnHeaderFormat={{
-        //   day: 'numeric'
-        // }}
+        //columnHeaderFormat={{
+        //day: 'numeric'
+        //}}
+        slotLabelFormat={[
+          { month: 'long', year: 'numeric' }, // top level of text
+          { day: 'numeric' } // lower level of text
+        ]}
         schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
         //schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
         resources={this.state.resources}
