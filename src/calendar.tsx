@@ -45,7 +45,8 @@ export interface State {
   header: string,
   headerWidth: number,
   height?: number | 'auto',
-  calendarTitle?: string
+  calendarTitle?: string,
+  numberOfMonths?: number
 }
 
 //Defaults
@@ -59,7 +60,8 @@ export const initialState: State = {
   header: "Orgs",
   headerWidth: 10,
   height:'auto',
-  calendarTitle: 'Calendar'
+  calendarTitle: 'Calendar',
+  numberOfMonths: 1
 }
 
 export class ReactCalendar extends React.Component{ //<{}, State> 
@@ -255,7 +257,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         //     nowIndicator:true,
         //   }
         // }}
-        duration={{months:1}}
+        duration={{months:this.state.numberOfMonths}}
         nowIndicator={true}
         // nice... include a formatting option, then fucking ignore it.
         //columnHeaderFormat={{

@@ -10,6 +10,7 @@ export class CalendarSettings {
     public header: string = "Orgs";
     public headerWidth: number = 10;
     public calendarTitle: string = "Calendar";
+    public numberOfMonths: number = 1;
 }
 
 export class VisualSettings extends DataViewObjectsParser {

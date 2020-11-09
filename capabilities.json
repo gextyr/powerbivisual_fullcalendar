@@ -68,6 +68,11 @@
                     "displayName": "Calendar Title",
                     "description": "Main title for the calendar",
                     "type": { "text": true }
+                },
+                "numberOfMonths":{
+                    "displayName": "Number of Months",
+                    "description": "Number of Months to display (Default 1)",
+                    "type": {"numeric": true}
                 }
             }
         }

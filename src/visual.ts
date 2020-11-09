@@ -249,6 +249,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     header:this.settings.calendar.header, 
                     headerWidth:this.settings.calendar.headerWidth,
                     calendarTitle: this.settings.calendar.calendarTitle,
+                    numberOfMonths:this.settings.calendar.numberOfMonths,
                     selectionManager:this.selectionManager, 
                     height:this.viewport.height,
                     resources});
