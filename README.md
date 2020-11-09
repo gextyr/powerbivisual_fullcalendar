@@ -1,6 +1,6 @@
 # Introduction 
 * Basic [Full Calendar](https://fullcalendar.io/) Implementation in a Power BI Visual using React
-* Written by [Gregory Morris](mailto:gmorris@microsoft.com) on a rainy afternoon
+* Written by [Gregory Morris](mailto:gmorris@microsoft.com) on a rainy afternoon, with some improvements and fixes by @jlara005
 * Note - unlike other calendar/gantt visuals, this is intended to show eaches, instead of aggregates
 
 # Getting Started
