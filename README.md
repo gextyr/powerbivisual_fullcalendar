@@ -79,9 +79,14 @@
     * Check table data types, handle gracefully
 * Make image height configurable (currently hardcoded to 20px in css)
 * Better handling for "default" single group
+* Auto-scroll to earliest date (e.g. when PBI filters to some future month)
+
+# Refactoring TODO
+* Move tooltip formatting from visual.ts to calendar.tsx
+* Possible: Move State interface and initialState const from calendar.tsx to settings.ts?
+* Possible: Remove react completely?
 
 # Possible Future Backlog
-* Replace react code - there are too many disconnects and "hacky" things that have to be done to make it work right
 * Add "hightlight" interaction, in addition to "filter" interaction
 
 # Sample Screen Capture
