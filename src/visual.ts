@@ -238,6 +238,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     events:events, 
                     header:this.settings.calendar.header, 
                     headerWidth:this.settings.calendar.headerWidth,
+                    calendarTitle: this.settings.calendar.calendarTitle,
                     selectionManager:this.selectionManager, 
                     height:this.viewport.height,
                     resources});
@@ -252,7 +253,6 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
     }
     
     private static parseSettings(dataView: DataView): VisualSettings {
-        console.info("parseSettings");
         return <VisualSettings>VisualSettings.parse(dataView);
     }
 

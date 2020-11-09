@@ -9,6 +9,7 @@ export class CalendarSettings {
     //public calendarType: string = "resourceTimeline";
     public header: string = "Orgs";
     public headerWidth: number = 10;
+    public calendarTitle: string = "Calendar";
 }
 
 export class VisualSettings extends DataViewObjectsParser {
