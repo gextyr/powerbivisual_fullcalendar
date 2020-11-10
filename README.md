@@ -83,7 +83,6 @@
     * Add configurable default background color
 * Add error checking (e.g. for dates and colors)
     * Check table data types, handle gracefully
-* Make image height configurable (currently hardcoded to 20px in css)
 * Better handling for "default" single group
 * Auto-scroll to earliest date (e.g. when PBI filters to some future month)
 
