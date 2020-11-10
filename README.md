@@ -52,6 +52,12 @@
 * Image - url (or base64 encoded image) to display in-line with the title
 * Tool Tips - currently not used (will be used for tooltips)
 
+# Settings
+* Grouping Title - The title for the "grouping rows" column
+* Grouping Area Width % - The percent of the overall width of the visual to use for the grouping title
+* Calendar Title - the title text for the calendar
+* Number of Months - the number of months to render at once (will scroll, and prev/next buttons will advance by that many)
+
 # Tips
 * Open f12 tools to see console
 * Use console.info()|error()|debug() etc. to write to the console
@@ -66,10 +72,6 @@
     * It seems the viewport height is not yet set during the initial update/render cycle
 
 # Other Backlog/TODO
-* !! Configurable number of days/months to show (currently hardcoded to 1 month)
-* !! Sort Tooltips:
-    * Title, Grouping, Start Date, End Date, anything in "Tooltips" field
-    * Add Image to Tool Tips popup
 * ! The only required fields to render should be Title and Start
 * ! “Skip ahead/back N days” buttons (instead of only 1 month at a time)
     * May need to add logic to base ahead/back function on # of days/months shown - e.g. scroll vs refresh

@@ -149,9 +149,11 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       let calendarApi = this.calendarComponentRef.current!.getApi(); 
       var s = document.createElement('span');
       var i = document.createElement('img');
+      var br = document.createElement('br');
       i.className="fc-titleimage";
       i.src=sid.image;
       s.appendChild(i);
+      s.appendChild(br);
       //c.childNodes[0].appendChild(s);
       c.childNodes[0].insertBefore(s, c.childNodes[0].firstChild);
     }
@@ -216,6 +218,9 @@ export class ReactCalendar extends React.Component{ //<{}, State>
     // console.info(calendarApi.pluginSystem.hooks.views.resourceTimeline);
     // var x = calendarApi.formatDate(calendarApi.getDate(),{day:'numeric',weekday:'narrow'});
     // console.info(x);
+    
+    //this works, but it gets overridden
+    //$("#reactCalendar").find('.fc-toolbar > div > h2').text(this.state.calendarTitle);
   }
   
 
@@ -231,6 +236,10 @@ export class ReactCalendar extends React.Component{ //<{}, State>
             //center: 'title',
             right: '' // 'resourceDayGrid' //dayGrid30 resourceDayGrid dayGridWeek
         }}
+        ////viewRender  was deprecated in v4
+        // viewRender={function(info){
+        //   info.el.querySelector('.fc-toolbar > div > h2').innerHTML=this.state.calendarTitle;
+        // }}
         // customButtons={{
         //   mynext: {
         //     text:"Next",

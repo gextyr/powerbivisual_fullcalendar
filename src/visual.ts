@@ -151,20 +151,16 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     gIndex=column.roles.grouping?column.index:gIndex;
                     iIndex=column.roles.image?column.index:iIndex;
                     
-                    if(!column.roles.color && !column.roles.identity && !column.roles.image){
-                    //if(column.roles.tooltips){
-                        // put everything into tooltips except color/identity
-                        //ttIndex.push(column.index);
-
+                    if(!column.roles.color && !column.roles.identity){ // && !column.roles.image){
                         ttIndex.push({
                             index:column.index,
-                            format:column.format,
                             display:column.displayName,
                             isStart:column.roles.start,
-                            isEnd:column.roles.end
+                            isEnd:column.roles.end,
+                            isTitle:column.roles.title,
+                            isGrouping:column.roles.grouping,
+                            isImage: column.roles.image
                         })
-
-                        //console.info(column);
                     }
                 });
 
@@ -199,15 +195,29 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     var ttip: Array<string> = [];
                     ttip.push(s.outerHTML);
                     
+                    var idx:number=0;
                     ttIndex.forEach((ttobj)=>{
+                        idx++;
+                        //add these in the order we want them displayed
                         //move this formatting logic to calendar.tsx?
-                        if(ttobj.isEnd || ttobj.isStart)
+                        if(ttobj.isImage) {
+                            ttip[0] = '<img src="' + row[ttobj.index].toString() + '">'
+                        } else if(ttobj.isTitle)
+                        {
+                            ttip[1] = ttobj.display + " : " + row[ttobj.index].toString();
+                        }
+                        else if(ttobj.isStart)
                         {
                             //figure out how to use the format string provided by PBI
-                            ttip.push(ttobj.display + " : " + row[ttobj.index].toString().substring(0,10));
-                        }
-                        else {
-                            ttip.push(ttobj.display + " : " + row[ttobj.index].toString());
+                            ttip[2] = ttobj.display + " : " + row[ttobj.index].toString().substring(0,10);
+                        } else if(ttobj.isEnd)
+                        {
+                            //figure out how to use the format string provided by PBI
+                            ttip[3] = ttobj.display + " : " + row[ttobj.index].toString().substring(0,10);
+                        } else if (ttobj.isGrouping) {
+                            ttip[4] = ttobj.display + " : " + row[ttobj.index].toString();
+                        } else {
+                            ttip[5+idx] = ttobj.display + " : " + row[ttobj.index].toString();
                         }
                         //ttip.push(row[ttIndexNum].toString());
                     });
