@@ -198,21 +198,21 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   //   //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),-1));
   //   calendarApi.incrementDate({months:-1});
   // }
-  handleWindowResize = (arg)=>{
-    //console.info("handleWindowResize");
-    //let calendarApi = this.calendarComponentRef.current!.getApi()
-    //console.info(arg);
-  }
+  // handleWindowResize = (arg)=>{
+  //   //console.info("handleWindowResize");
+  //   //let calendarApi = this.calendarComponentRef.current!.getApi()
+  //   //console.info(arg);
+  // }
 
-  handleViewSkeletonRender = (arg)=>{
-    //console.info("handleViewSkeletonRender");
-    //console.info(arg);
-  }
+  // handleViewSkeletonRender = (arg)=>{
+  //   //console.info("handleViewSkeletonRender");
+  //   //console.info(arg);
+  // }
 
-  handleDatesRender = (arg)=>{
-    // console.info("handleDatesRender");
-    // console.info(arg);
-  }
+  // handleDatesRender = (arg)=>{
+  //   // console.info("handleDatesRender");
+  //   // console.info(arg);
+  // }
 
   getNow = ()=>{
     let calendarApi = this.calendarComponentRef.current!.getApi()
@@ -278,10 +278,6 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         // }}
         duration={{months:this.state.numberOfMonths}}
         nowIndicator={true}
-        // nice... include a formatting option, then fucking ignore it.
-        //columnHeaderFormat={{
-        //day: 'numeric'
-        //}}
         slotLabelFormat={[
           { month: 'long', year: 'numeric' }, // top level of text
           { day: 'numeric' } // lower level of text
@@ -298,9 +294,9 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         plugins={[ resourceTimelinePlugin, interactionPlugin  ]} //dayGridPlugin, interactionPlugin 
         events={this.state.events}
         eventRender={this.handleEventRender}
-        windowResize={this.handleWindowResize}
-        viewSkeletonRender={this.handleViewSkeletonRender}
-        datesRender={this.handleDatesRender}
+        // windowResize={this.handleWindowResize}
+        // viewSkeletonRender={this.handleViewSkeletonRender}
+        // datesRender={this.handleDatesRender}
       />
       </div>
     );
