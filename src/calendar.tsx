@@ -95,7 +95,8 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   //you'd think it would... but for now, we'll just have to deal with it.
   onChange = (events,type,selectionManager) => function(){
     //console.info("onchange");
-    this.setState({ events: events, type:type, selectionManager:selectionManager });
+    //this.setState({ events: events, type:type, selectionManager:selectionManager });
+    this.setState(this.state);
   };
   
   handleEventClick = (arg) => {
