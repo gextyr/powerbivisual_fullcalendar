@@ -65,18 +65,33 @@
 * Saving a file will auto-rebuild
 
 # Possible Issues
-* BUG: For some reason, the hex background color is being converted to a named color in some cases, which causes the drillthrough to fail when all filters are kept, e.g. Color = "Red" filter fails, and the data set uses #ff0000 (can't currently reproduce)
-* BUG: Synchronizing highlighting after you filter this viz then another (can't currently reproduce)
+* (possibly resolved, needs tested) BUG: For some reason, the hex background color is being converted to a named color in some cases, which causes the drillthrough to fail when all filters are kept, e.g. Color = "Red" filter fails, and the data set uses #ff0000 (can't currently reproduce)
+* (possibly resolved, needs tested) BUG: Synchronizing highlighting after you filter this viz then another (can't currently reproduce)
 * BUG: repro: add all fields, then remove "grouping" and the visual doesn't reload... 
-* BUG: the scrollbars do not show up by default in Power BI Desktop until the visual is modified - they do in Powerbi.com using dev visual
+* (resolved - needs tested) BUG: the scrollbars do not show up by default in Power BI Desktop until the visual is modified - they do in Powerbi.com using dev visual
     * It seems the viewport height is not yet set during the initial update/render cycle
 
 # Other Backlog/TODO
 * ! The only required fields to render should be Title and Start
+    * Currently, grouping and color are also required 
+    * Improvements need to be made to handle unset color and grouping fields first
 * ! “Skip ahead/back N days” buttons (instead of only 1 month at a time)
     * May need to add logic to base ahead/back function on # of days/months shown - e.g. scroll vs refresh
+    * Or... make it configurable
 * ! Optional: Alternating row color
+    * FullCalendar doesn't seem to inject odd/even row classe names into the fc-widget-content TDs
 * ! Optional: Configurable fonts/colors/style
+    * Title (font/color/size)
+    * Group/Resource title (font/color/size)
+    * Group/Resource text (font/color/size)
+    * Month/Year column header (font/color/size)
+    * Day column header (font/color/size)
+    * Event Text  (font/size) (note - text color is set automatically, based on background color)
+    * Column width?
+    * Event container style?
+    * Prev/Next/Today buttons
+    * Weekend column bgcolor
+    * Today column bgcolor
 * Improve "Color" column functionality
     * Allow named colors as well as hex
     * Add default color palette + auto-select
@@ -84,15 +99,13 @@
 * Add error checking (e.g. for dates and colors)
     * Check table data types, handle gracefully
 * Better handling for "default" single group
-* Auto-scroll to earliest date (e.g. when PBI filters to some future month)
+* Auto-scroll to earliest date (e.g. when PBI filters to some future month, so you don't get "lost")
+* Add "hightlight" interaction, in addition to "filter" interaction
 
 # Refactoring TODO
 * Move tooltip formatting from visual.ts to calendar.tsx
 * Possible: Move State interface and initialState const from calendar.tsx to settings.ts?
 * Possible: Remove react completely?
-
-# Possible Future Backlog
-* Add "hightlight" interaction, in addition to "filter" interaction
 
 # Sample Screen Capture
 ![30 day gridview screen capture](/assets/screenshot.png)
