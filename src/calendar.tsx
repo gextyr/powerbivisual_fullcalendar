@@ -93,10 +93,19 @@ export class ReactCalendar extends React.Component{ //<{}, State>
 
   //for some reason, the damned defaultView doesn't update when the State is updated
   //you'd think it would... but for now, we'll just have to deal with it.
-  onChange = (events,type,selectionManager) => function(){
+  onChange = (events,type,selectionManager,resources,header,headerWidth,height,calendarTitle,numberOfMonths) => function(){
     //console.info("onchange");
-    //this.setState({ events: events, type:type, selectionManager:selectionManager });
-    this.setState(this.state);
+    this.setState({ 
+      events: events, 
+      type:type, 
+      selectionManager:selectionManager,
+      resources:resources,
+      header:header,
+      headerWidth:headerWidth,
+      height:height,
+      calendarTitle:calendarTitle,
+      numberOfMonths:numberOfMonths
+     });
   };
   
   handleEventClick = (arg) => {
