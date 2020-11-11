@@ -76,11 +76,10 @@
 * !! wrap group text
 * !! nicer/smaller buttons - css (jp/arnie)
 * !! set background color to white - css (jp/arnie)
-* !! use config option for weekend color
-* !! use config option for today color
-* !! use config option for grid line color
+* !! use config option for weekend color (weekendColor)
+* !! use config option for today color (todayColor)
+* !! use config option for grid line color (gridlineColor)
 * !! hard-code new styles for: font , font color , font size
-
 * ! The only required fields to render should be Title and Start
     * Currently, grouping and color are also required 
     * Improvements need to be made to handle unset color and grouping fields first
