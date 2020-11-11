@@ -76,9 +76,9 @@
 * !! wrap group text
 * !! nicer/smaller buttons - css (jp/arnie)
 * !! set background color to white - css (jp/arnie)
-* !! add config option for weekend color (hex color or picker)
-* !! add config option for today color (hex color or picker)
-* !! add config option for grid line color (hex color or picker)
+* !! use config option for weekend color
+* !! use config option for today color
+* !! use config option for grid line color
 * !! hard-code new styles for: font , font color , font size
 
 * ! The only required fields to render should be Title and Start
