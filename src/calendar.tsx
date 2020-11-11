@@ -17,6 +17,7 @@ import { xml } from "d3";
 import { PluginDef } from "@fullcalendar/core";
 //import { ResourceTimelineView } from "@fullcalendar/resource-timeline";
 
+
 //this should be an interface, and it should probably live in visual.ts
 export class calendarEvent {
   public id: string;
@@ -173,7 +174,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       i.className="fc-titleimage";
       i.src=sid.image;
       s.appendChild(i);
-      s.appendChild(br);
+      //s.appendChild(br);
       //c.childNodes[0].appendChild(s);
       c.childNodes[0].insertBefore(s, c.childNodes[0].firstChild);
     }
@@ -307,7 +308,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         defaultView={this.state.type}
         plugins={[ resourceTimelinePlugin, interactionPlugin  ]} //dayGridPlugin, interactionPlugin 
         events={this.state.events}
-        eventRender={this.handleEventRender}
+        eventRender={this.handleEventRender}        
         // windowResize={this.handleWindowResize}
         // viewSkeletonRender={this.handleViewSkeletonRender}
         // datesRender={this.handleDatesRender}
