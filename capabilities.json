@@ -73,6 +73,39 @@
                     "displayName": "Number of Months",
                     "description": "Number of Months to display (Default 1)",
                     "type": {"numeric": true}
+                },
+                "weekendColor":{
+                    "displayName": "Weekend Color",
+                    "description": "Background color of the weekend columns.",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "todayColor":{
+                    "displayName": "Today Color",
+                    "description": "Background color of today's column.",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "gridlineColor":{
+                    "displayName": "Grid Color",
+                    "description": "Color of the grid lines.",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
                 }
             }
         }

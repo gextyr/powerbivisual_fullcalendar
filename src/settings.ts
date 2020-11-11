@@ -11,6 +11,9 @@ export class CalendarSettings {
     public headerWidth: number = 10;
     public calendarTitle: string = "Calendar";
     public numberOfMonths: number = 1;
+    public weekendColor: string = "#f0f0f0";
+    public todayColor: string = "#fcf8e3";
+    public gridlineColor: string = "#f9f9f9";
 }
 
 export class VisualSettings extends DataViewObjectsParser {

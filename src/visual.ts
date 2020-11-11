@@ -114,9 +114,9 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
     public update(options: VisualUpdateOptions) {
         this.dataView=options.dataViews[0];
 
-        this.settings = VisualSettings.parse<VisualSettings>(this.dataView);
+        this.settings = VisualSettings.parse<VisualSettings>(this.dataView); //call the default parse
         //debugger;
-        //console.info(this.settings.calendar.calendarType);
+        console.info("weekendcolor" + this.settings.calendar.weekendColor);
         //console.info("update");
         
         if (options.dataViews && options.dataViews[0]) {
@@ -273,11 +273,13 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
         ReactCalendar.update(initialState);
     }
     
-    private static parseSettings(dataView: DataView): VisualSettings {
-        return <VisualSettings>VisualSettings.parse(dataView);
-    }
+    //override this if necessary
+    // private static parseSettings(dataView: DataView): VisualSettings {
+    //     return <VisualSettings>VisualSettings.parse(dataView);
+    // }
 
     public enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions): VisualObjectInstanceEnumeration {
+        //console.info("enumerateObjectInstances");
         const settings: VisualSettings = this.settings || <VisualSettings>VisualSettings.getDefault();
         return VisualSettings.enumerateObjectInstances(settings, options);
     }

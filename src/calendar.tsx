@@ -46,7 +46,10 @@ export interface State {
   headerWidth: number,
   height?: number | 'auto',
   calendarTitle?: string,
-  numberOfMonths?: number
+  numberOfMonths?: number,
+  weekendColor?: string;
+  todayColor?: string;
+  gridlineColor?: string;
 }
 
 //Defaults
@@ -61,7 +64,10 @@ export const initialState: State = {
   headerWidth: 10,
   height:'auto',
   calendarTitle: 'Calendar',
-  numberOfMonths: 1
+  numberOfMonths: 1,
+  weekendColor: "#f0f0f0",
+  todayColor: "#fcf8e3",
+  gridlineColor: "#f9f9f9"
 }
 
 export class ReactCalendar extends React.Component{ //<{}, State> 
@@ -84,6 +90,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   }
 
   public componentWillMount() {
+    console.info("willmount");
     ReactCalendar.updateCallback = (newState: State): void => { this.setState(newState); };
   }
 
@@ -93,8 +100,8 @@ export class ReactCalendar extends React.Component{ //<{}, State>
 
   //for some reason, the damned defaultView doesn't update when the State is updated
   //you'd think it would... but for now, we'll just have to deal with it.
-  onChange = (events,type,selectionManager,resources,header,headerWidth,height,calendarTitle,numberOfMonths) => function(){
-    //console.info("onchange");
+  onChange = (events,type,selectionManager,resources,header,headerWidth,height,calendarTitle,numberOfMonths,weekendColor,todayColor,gridlineColor) => function(){
+    console.info("onchange");
     this.setState({ 
       events: events, 
       type:type, 
@@ -104,7 +111,10 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       headerWidth:headerWidth,
       height:height,
       calendarTitle:calendarTitle,
-      numberOfMonths:numberOfMonths
+      numberOfMonths:numberOfMonths,
+      weekendColor:weekendColor,
+      todayColor:todayColor,
+      gridlineColor:gridlineColor
      });
   };
   
@@ -235,9 +245,13 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   
 
   render() {
-    console.info("height:" + this.state.height);
+    //console.info("height:" + this.state.height);
     //console.info("render");
     //console.info("rendering type: " + this.state.type + " events: " + this.state.events.length);
+    
+    // console.info("render, weekendcolor: " + this.state.weekendColor);
+    // $(".fc-sat, .fc-sun").css('background-color', this.state.weekendColor);
+
     var x = (
       <div id="reactCalendar">
       <FullCalendar
