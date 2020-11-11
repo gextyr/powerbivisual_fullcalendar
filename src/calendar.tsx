@@ -44,7 +44,9 @@ export interface State {
   resources?: calendarResource[];
   header: string,
   headerWidth: number,
-  height?: number | 'auto'
+  height?: number | 'auto',
+  calendarTitle?: string,
+  numberOfMonths?: number
 }
 
 //Defaults
@@ -57,7 +59,9 @@ export const initialState: State = {
   resources: [{id:null,title:"NA"}], //[{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
   header: "Orgs",
   headerWidth: 10,
-  height:'auto'
+  height:'auto',
+  calendarTitle: 'Calendar',
+  numberOfMonths: 1
 }
 
 export class ReactCalendar extends React.Component{ //<{}, State> 
@@ -89,9 +93,19 @@ export class ReactCalendar extends React.Component{ //<{}, State>
 
   //for some reason, the damned defaultView doesn't update when the State is updated
   //you'd think it would... but for now, we'll just have to deal with it.
-  onChange = (events,type,selectionManager) => function(){
+  onChange = (events,type,selectionManager,resources,header,headerWidth,height,calendarTitle,numberOfMonths) => function(){
     //console.info("onchange");
-    this.setState({ events: events, type:type, selectionManager:selectionManager });
+    this.setState({ 
+      events: events, 
+      type:type, 
+      selectionManager:selectionManager,
+      resources:resources,
+      header:header,
+      headerWidth:headerWidth,
+      height:height,
+      calendarTitle:calendarTitle,
+      numberOfMonths:numberOfMonths
+     });
   };
   
   handleEventClick = (arg) => {
@@ -145,10 +159,13 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       let calendarApi = this.calendarComponentRef.current!.getApi(); 
       var s = document.createElement('span');
       var i = document.createElement('img');
+      var br = document.createElement('br');
       i.className="fc-titleimage";
       i.src=sid.image;
       s.appendChild(i);
-      c.childNodes[0].appendChild(s);
+      s.appendChild(br);
+      //c.childNodes[0].appendChild(s);
+      c.childNodes[0].insertBefore(s, c.childNodes[0].firstChild);
     }
 //debugger;
 
@@ -181,21 +198,21 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   //   //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),-1));
   //   calendarApi.incrementDate({months:-1});
   // }
-  handleWindowResize = (arg)=>{
-    //console.info("handleWindowResize");
-    //let calendarApi = this.calendarComponentRef.current!.getApi()
-    //console.info(arg);
-  }
+  // handleWindowResize = (arg)=>{
+  //   //console.info("handleWindowResize");
+  //   //let calendarApi = this.calendarComponentRef.current!.getApi()
+  //   //console.info(arg);
+  // }
 
-  handleViewSkeletonRender = (arg)=>{
-    //console.info("handleViewSkeletonRender");
-    //console.info(arg);
-  }
+  // handleViewSkeletonRender = (arg)=>{
+  //   //console.info("handleViewSkeletonRender");
+  //   //console.info(arg);
+  // }
 
-  handleDatesRender = (arg)=>{
-    // console.info("handleDatesRender");
-    // console.info(arg);
-  }
+  // handleDatesRender = (arg)=>{
+  //   // console.info("handleDatesRender");
+  //   // console.info(arg);
+  // }
 
   getNow = ()=>{
     let calendarApi = this.calendarComponentRef.current!.getApi()
@@ -211,6 +228,9 @@ export class ReactCalendar extends React.Component{ //<{}, State>
     // console.info(calendarApi.pluginSystem.hooks.views.resourceTimeline);
     // var x = calendarApi.formatDate(calendarApi.getDate(),{day:'numeric',weekday:'narrow'});
     // console.info(x);
+    
+    //this works, but it gets overridden
+    //$("#reactCalendar").find('.fc-toolbar > div > h2').text(this.state.calendarTitle);
   }
   
 
@@ -223,10 +243,13 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       <FullCalendar
         header={{
             left: 'prev,next today', //myprev,mynext 
-            center: 'title',
+            //center: 'title',
             right: '' // 'resourceDayGrid' //dayGrid30 resourceDayGrid dayGridWeek
         }}
-        
+        ////viewRender  was deprecated in v4
+        // viewRender={function(info){
+        //   info.el.querySelector('.fc-toolbar > div > h2').innerHTML=this.state.calendarTitle;
+        // }}
         // customButtons={{
         //   mynext: {
         //     text:"Next",
@@ -253,12 +276,12 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         //     nowIndicator:true,
         //   }
         // }}
-        duration={{months:1}}
+        duration={{months:this.state.numberOfMonths}}
         nowIndicator={true}
-        // nice... include a formatting option, then fucking ignore it.
-        // columnHeaderFormat={{
-        //   day: 'numeric'
-        // }}
+        slotLabelFormat={[
+          { month: 'long', year: 'numeric' }, // top level of text
+          { day: 'numeric' } // lower level of text
+        ]}
         schedulerLicenseKey='CC-Attribution-NonCommercial-NoDerivatives'
         //schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
         resources={this.state.resources}
@@ -271,9 +294,9 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         plugins={[ resourceTimelinePlugin, interactionPlugin  ]} //dayGridPlugin, interactionPlugin 
         events={this.state.events}
         eventRender={this.handleEventRender}
-        windowResize={this.handleWindowResize}
-        viewSkeletonRender={this.handleViewSkeletonRender}
-        datesRender={this.handleDatesRender}
+        // windowResize={this.handleWindowResize}
+        // viewSkeletonRender={this.handleViewSkeletonRender}
+        // datesRender={this.handleDatesRender}
       />
       </div>
     );

@@ -328,7 +328,7 @@ tr.fc-collapsed > td > div {
 .fc-body .fc-time-area .fc-following:before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 0px;
   margin-top: -5px;
   border: 5px solid #000;
   border-top-color: transparent;
@@ -601,10 +601,11 @@ a[data-goto]:hover {
 .fc-event {
   /* position: relative; */
   display: block;
-  font-size: 0.85em;
+  font-size: 0.75em;
   line-height: 1.3;
   border-radius: 3px;
   border: 1px solid #3a87ad !important;
+  overflow:hidden; /*GDM - this might be a good idea */
 }
 .fc-event,
 .fc-event:hover {
@@ -1305,5 +1306,6 @@ a.fc-more:hover {
 {
 	padding-left:5px;
 	padding-right: 5px;
-	height:20px;
+	/* height:20px;*/
+	max-width: 20px;
 }

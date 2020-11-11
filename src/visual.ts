@@ -151,20 +151,16 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     gIndex=column.roles.grouping?column.index:gIndex;
                     iIndex=column.roles.image?column.index:iIndex;
                     
-                    if(!column.roles.color && !column.roles.identity && !column.roles.image){
-                    //if(column.roles.tooltips){
-                        // put everything into tooltips except color/identity
-                        //ttIndex.push(column.index);
-
+                    if(!column.roles.color && !column.roles.identity){ // && !column.roles.image){
                         ttIndex.push({
                             index:column.index,
-                            format:column.format,
                             display:column.displayName,
                             isStart:column.roles.start,
-                            isEnd:column.roles.end
+                            isEnd:column.roles.end,
+                            isTitle:column.roles.title,
+                            isGrouping:column.roles.grouping,
+                            isImage: column.roles.image
                         })
-
-                        //console.info(column);
                     }
                 });
 
@@ -186,18 +182,42 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     // console.info(end);
                     var bgcolor:string = row[cIndex].toString();
                     var grouping:string = row[gIndex].toString();
+
+                    //Add icon to tooltip as first object
                     var imageStr:string = iIndex==null||row[iIndex]==null?"":row[iIndex].toString();
+                    var s = document.createElement('span');
+                    var i = document.createElement('img');
+                    i.className="fc-titleimage";
+                    i.src=imageStr;
+                    s.appendChild(i);
 
                    //TODO: figure out best way to sort tooltips
                     var ttip: Array<string> = [];
+                    ttip.push(s.outerHTML);
+                    
+                    var idx:number=0;
                     ttIndex.forEach((ttobj)=>{
+                        idx++;
+                        //add these in the order we want them displayed
                         //move this formatting logic to calendar.tsx?
-                        if(ttobj.isEnd || ttobj.isStart)
+                        if(ttobj.isImage) {
+                            ttip[0] = '<img src="' + row[ttobj.index].toString() + '">'
+                        } else if(ttobj.isTitle)
+                        {
+                            ttip[1] = ttobj.display + " : " + row[ttobj.index].toString();
+                        }
+                        else if(ttobj.isStart)
                         {
                             //figure out how to use the format string provided by PBI
-                            ttip.push(ttobj.display + " : " + row[ttobj.index].toString().substring(0,10));
+                            ttip[2] = ttobj.display + " : " + row[ttobj.index].toString().substring(0,10);
+                        } else if(ttobj.isEnd)
+                        {
+                            //figure out how to use the format string provided by PBI
+                            ttip[3] = ttobj.display + " : " + row[ttobj.index].toString().substring(0,10);
+                        } else if (ttobj.isGrouping) {
+                            ttip[4] = ttobj.display + " : " + row[ttobj.index].toString();
                         } else {
-                            ttip.push(ttobj.display + " : " + row[ttobj.index].toString());
+                            ttip[5+idx] = ttobj.display + " : " + row[ttobj.index].toString();
                         }
                         //ttip.push(row[ttIndexNum].toString());
                     });
@@ -238,6 +258,8 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     events:events, 
                     header:this.settings.calendar.header, 
                     headerWidth:this.settings.calendar.headerWidth,
+                    calendarTitle: this.settings.calendar.calendarTitle,
+                    numberOfMonths:this.settings.calendar.numberOfMonths,
                     selectionManager:this.selectionManager, 
                     height:this.viewport.height,
                     resources});
@@ -252,7 +274,6 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
     }
     
     private static parseSettings(dataView: DataView): VisualSettings {
-        console.info("parseSettings");
         return <VisualSettings>VisualSettings.parse(dataView);
     }
 
@@ -298,4 +319,4 @@ export function logExceptions(): MethodDecorator {
 //           }
 //       }
 //   }
-// },
+// },      
