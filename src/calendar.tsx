@@ -14,7 +14,10 @@ import tippy from "tippy.js";
 import 'tippy.js/themes/light.css';
 import CalendarComponent from "@fullcalendar/core/CalendarComponent";
 import { xml } from "d3";
-import { PluginDef } from "@fullcalendar/core";
+import { Calendar } from "@fullcalendar/core";
+import bootstrapPlugin from "@fullcalendar/bootstrap"
+import '@fullcalendar/bootstrap/main.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 //import { ResourceTimelineView } from "@fullcalendar/resource-timeline";
 
 
@@ -306,12 +309,14 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         ref={ this.calendarComponentRef }
         eventClick={this.handleEventClick}
         defaultView={this.state.type}
-        plugins={[ resourceTimelinePlugin, interactionPlugin  ]} //dayGridPlugin, interactionPlugin 
         events={this.state.events}
-        eventRender={this.handleEventRender}        
+        eventRender={this.handleEventRender}    
+        plugins={[ resourceTimelinePlugin, interactionPlugin, bootstrapPlugin  ]} //dayGridPlugin, interactionPlugin
         // windowResize={this.handleWindowResize}
         // viewSkeletonRender={this.handleViewSkeletonRender}
-        // datesRender={this.handleDatesRender}
+        // datesRender={this.handleDatesRender}        
+        //themeSystem = 'bootstrap'
+        //buttonIcons={ {prev: 'fa-chevron-left', next:'fa-chevron-right'}}
       />
       </div>
     );
