@@ -72,7 +72,6 @@
     * It seems the viewport height is not yet set during the initial update/render cycle
 
 # Other Backlog/TODO
-* !! remove break after image (add space so it wraps)
 * !! wrap group text
 * !! nicer/smaller buttons - css (jp/arnie)
 * !! set background color to white - css (jp/arnie)
@@ -87,7 +86,7 @@
     * May need to add logic to base ahead/back function on # of days/months shown - e.g. scroll vs refresh
     * Or... make it configurable
 * ! Optional: Alternating row color
-    * FullCalendar doesn't seem to inject odd/even row classe names into the fc-widget-content TDs
+    * FullCalendar doesn't seem to inject odd/even row class names into the fc-widget-content TDs
 * ! Optional: Configurable fonts/colors/style
     * Title (font/color/size)
     * Group/Resource title (font/color/size)
