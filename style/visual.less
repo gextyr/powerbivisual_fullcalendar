@@ -1337,14 +1337,49 @@ td.fc-widget-content {
 th.fc-widget-header span.fc-cell-text {
   font-size: 12pt;
   font-family: 'Arial';
+  color: black;
 }
 
-th.fc-widget-header.fc-past span.fc-cell-text.fc-sticky, th.fc-widget-header.fc-future span.fc-cell-text.fc-sticky {
+th.fc-widget-header.fc-today span.fc-cell-text.fc-sticky, th.fc-widget-header.fc-past span.fc-cell-text.fc-sticky, th.fc-widget-header.fc-future span.fc-cell-text.fc-sticky {
   font-size: 24pt;
   font-family: 'Times New Roman';
+  color: Black;
 }
 
 td.fc-widget-content span.fc-cell-text, span.fc-title {
   font-size: 10pt;
   font-family: 'Segoe UI';
+  color: white;
 }
+
+td.fc-widget-content.fc-future {
+  background: #001837 !important;
+}
+
+// .fc-resource-area .fc-widget-header{
+//   background: #001837 !important;
+// }
+
+// .fc-resource-area .fc-widget-header span.fc-cell-text{
+//   color: white;
+// }
+
+.fc-resource-area .fc-widget-content > div{
+  background: #001837 !important;
+}
+
+.fc-slats .fc-widget-content {
+  background: #001837 !important;
+}
+
+td.fc-widget-header .fc-sat, td.fc-widget-content.fc-sat {
+  background-color: #f0f0f0 !important;
+}
+
+td.fc-widget-header .fc-sun, td.fc-widget-content.fc-sun {
+  background-color: #f0f0f0 !important;
+}
+ 
+td.fc-widget-content.fc-today {
+   background-color: #fcf8e3 !important;
+ }
