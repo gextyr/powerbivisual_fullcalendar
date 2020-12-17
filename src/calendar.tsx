@@ -18,6 +18,8 @@ import { Calendar } from "@fullcalendar/core";
 import bootstrapPlugin from "@fullcalendar/bootstrap"
 import '@fullcalendar/bootstrap/main.css'
 import '@fortawesome/fontawesome-free/css/all.css'
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 //import { ResourceTimelineView } from "@fullcalendar/resource-timeline";
 
 
