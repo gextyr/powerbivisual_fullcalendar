@@ -193,7 +193,10 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
 
                    //TODO: figure out best way to sort tooltips
                     var ttip: Array<string> = [];
-                    ttip.push(s.outerHTML);
+
+                    if(imageStr){
+                        ttip.push(s.outerHTML);
+                    }
                     
                     var idx:number=0;
                     ttIndex.forEach((ttobj)=>{
