@@ -115,9 +115,6 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
         this.dataView=options.dataViews[0];
 
         this.settings = VisualSettings.parse<VisualSettings>(this.dataView); //call the default parse
-        //debugger;
-        console.info("weekendcolor" + this.settings.calendar.weekendColor);
-        //console.info("update");
         
         if (options.dataViews && options.dataViews[0]) {
             const dataView: DataView = options.dataViews[0];
@@ -265,6 +262,9 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     numberOfMonths:this.settings.calendar.numberOfMonths,
                     selectionManager:this.selectionManager, 
                     height:this.viewport.height,
+                    weekendColor: this.settings.calendar.weekendColor,
+                    todayColor: this.settings.calendar.todayColor,
+                    gridlineColor: this.settings.calendar.gridlineColor,
                     resources});
             }
         } else {

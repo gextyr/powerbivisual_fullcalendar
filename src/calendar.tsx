@@ -254,9 +254,6 @@ export class ReactCalendar extends React.Component{ //<{}, State>
     //console.info("height:" + this.state.height);
     //console.info("render");
     //console.info("rendering type: " + this.state.type + " events: " + this.state.events.length);
-    
-    // console.info("render, weekendcolor: " + this.state.weekendColor);
-    // $(".fc-sat, .fc-sun").css('background-color', this.state.weekendColor);
 
     var x = (
       <div id="reactCalendar">
@@ -322,6 +319,12 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       />
       </div>
     );
+
+    //Update calendar colors
+    $("td.fc-widget-header .fc-sat, td.fc-widget-content.fc-sat").css("background-color", this.state.weekendColor + " !important");
+    $("td.fc-widget-header .fc-sun, td.fc-widget-content.fc-sun").css("background-color", this.state.weekendColor + " !important");
+    $("td.fc-widget-header .fc-today, td.fc-widget-content.fc-today").css("background-color", this.state.todayColor + " !important");
+
     // console.info("end render");
     // console.info(x.props.children.props);
     return x;
