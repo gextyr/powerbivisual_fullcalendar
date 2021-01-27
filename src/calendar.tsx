@@ -224,10 +224,19 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   //   //console.info(arg);
   // }
 
-  // handleDatesRender = (arg)=>{
-  //   // console.info("handleDatesRender");
-  //   // console.info(arg);
-  // }
+  handleDatesRender = (arg)=>{
+    //Clear colors
+    $("td.fc-widget-header .fc-sat, td.fc-widget-content.fc-sat").css("background-color", "");
+    $("td.fc-widget-header .fc-sun, td.fc-widget-content.fc-sun").css("background-color", "");
+    $("td.fc-widget-header .fc-today, td.fc-widget-content.fc-today").css("background-color", "");
+    $(".fc-unthemed th,.fc-unthemed td,.fc-unthemed thead,.fc-unthemed tbody,.fc-unthemed .fc-divider,.fc-unthemed .fc-row,.fc-unthemed .fc-content,.fc-unthemed .fc-popover,.fc-unthemed .fc-list-view,.fc-unthemed .fc-list-heading td").css("border-color", "");
+
+    //Update calendar colors
+    $("td.fc-widget-header .fc-sat, td.fc-widget-content.fc-sat").css("background-color", this.state.weekendColor);
+    $("td.fc-widget-header .fc-sun, td.fc-widget-content.fc-sun").css("background-color", this.state.weekendColor);
+    $("td.fc-widget-header .fc-today, td.fc-widget-content.fc-today").css("background-color", this.state.todayColor);
+    $(".fc-unthemed th,.fc-unthemed td,.fc-unthemed thead,.fc-unthemed tbody,.fc-unthemed .fc-divider,.fc-unthemed .fc-row,.fc-unthemed .fc-content,.fc-unthemed .fc-popover,.fc-unthemed .fc-list-view,.fc-unthemed .fc-list-heading td").css("border-color", this.state.gridlineColor);
+  }
 
   getNow = ()=>{
     let calendarApi = this.calendarComponentRef.current!.getApi()
@@ -312,7 +321,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         plugins={[ resourceTimelinePlugin, interactionPlugin, bootstrapPlugin  ]} //dayGridPlugin, interactionPlugin
         // windowResize={this.handleWindowResize}
         // viewSkeletonRender={this.handleViewSkeletonRender}
-        // datesRender={this.handleDatesRender}        
+        datesRender={this.handleDatesRender}        
         //themeSystem = 'bootstrap'
         //buttonIcons={ {prev: 'fa-chevron-left', next:'fa-chevron-right'}}
       />
