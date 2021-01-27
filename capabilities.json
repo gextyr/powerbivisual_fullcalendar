@@ -102,18 +102,18 @@
                     "type": { "text": true }
                 },
                 "calendarTitleFont": {
-                    "displayName": "Grouping Area Font",
-                    "description": "The font name of the grouping area.",
+                    "displayName": "Calendar Title Font",
+                    "description": "The font name of the calendar title.",
                     "type": { "text": true }
                 },
                 "calendarTitleFontSize": {
-                    "displayName": "Grouping Area Font size px",
-                    "description": "The font size (px) of the grouping area.",
+                    "displayName": "Calendar Title Font size px",
+                    "description": "The font size (px) of the calendar title.",
                     "type": { "numeric": true }
                 },
                 "calendarTitleFontColor":{
-                    "displayName": "Grouping Area Font Color",
-                    "description": "The font color of the grouping area.",
+                    "displayName": "Calendar Title Font Color",
+                    "description": "The font color of the calendar title.",
                     "type": {
                         "fill": {
                             "solid": {
@@ -123,8 +123,8 @@
                     }
                 },
                 "calendarTitleBackgroundColor":{
-                    "displayName": "Grouping Area Background Color",
-                    "description": "The background color of the grouping area.",
+                    "displayName": "Calendar Title Background Color",
+                    "description": "The background color of the calendar title.",
                     "type": {
                         "fill": {
                             "solid": {
@@ -134,18 +134,18 @@
                     }
                 },
                 "calendarDaysFont": {
-                    "displayName": "Grouping Area Font",
-                    "description": "The font name of the grouping area.",
+                    "displayName": "Calendar Days Font",
+                    "description": "The font name of the calendar days.",
                     "type": { "text": true }
                 },
                 "calendarDaysFontSize": {
-                    "displayName": "Grouping Area Font size px",
-                    "description": "The font size (px) of the grouping area.",
+                    "displayName": "Calendar Days Font size px",
+                    "description": "The font size (px) of the calendar days.",
                     "type": { "numeric": true }
                 },
                 "calendarDaysFontColor":{
-                    "displayName": "Grouping Area Font Color",
-                    "description": "The font color of the grouping area.",
+                    "displayName": "Calendar Days Font Color",
+                    "description": "The font color of the calendar days.",
                     "type": {
                         "fill": {
                             "solid": {
@@ -155,8 +155,8 @@
                     }
                 },
                 "calendarDaysBackgroundColor":{
-                    "displayName": "Grouping Area Background Color",
-                    "description": "The background color of the grouping area.",
+                    "displayName": "Calendar Days Background Color",
+                    "description": "The background color of the calendar days.",
                     "type": {
                         "fill": {
                             "solid": {
