@@ -54,7 +54,7 @@
         "calendar": {
             "displayName": "Calendar",
             "properties": {
-                "header": {
+                "headerTitle": {
                     "displayName": "Grouping Title",
                     "description": "Title to use for the grouping/swimlane column",
                     "type": { "text": true }
@@ -64,10 +64,106 @@
                     "description": "The percent width of the grouping area.",
                     "type": { "numeric": true }
                 },
+                "headerFont": {
+                    "displayName": "Grouping Area Font",
+                    "description": "The font name of the grouping area.",
+                    "type": { "text": true }
+                },
+                "headerFontSize": {
+                    "displayName": "Grouping Area Font size px",
+                    "description": "The font size (px) of the grouping area.",
+                    "type": { "numeric": true }
+                },
+                "headerFontColor":{
+                    "displayName": "Grouping Area Font Color",
+                    "description": "The font color of the grouping area.",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "headerBackgroundColor":{
+                    "displayName": "Grouping Area Background Color",
+                    "description": "The background color of the grouping area.",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
                 "calendarTitle":{
                     "displayName": "Calendar Title",
                     "description": "Main title for the calendar",
                     "type": { "text": true }
+                },
+                "calendarTitleFont": {
+                    "displayName": "Grouping Area Font",
+                    "description": "The font name of the grouping area.",
+                    "type": { "text": true }
+                },
+                "calendarTitleFontSize": {
+                    "displayName": "Grouping Area Font size px",
+                    "description": "The font size (px) of the grouping area.",
+                    "type": { "numeric": true }
+                },
+                "calendarTitleFontColor":{
+                    "displayName": "Grouping Area Font Color",
+                    "description": "The font color of the grouping area.",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "calendarTitleBackgroundColor":{
+                    "displayName": "Grouping Area Background Color",
+                    "description": "The background color of the grouping area.",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "calendarDaysFont": {
+                    "displayName": "Grouping Area Font",
+                    "description": "The font name of the grouping area.",
+                    "type": { "text": true }
+                },
+                "calendarDaysFontSize": {
+                    "displayName": "Grouping Area Font size px",
+                    "description": "The font size (px) of the grouping area.",
+                    "type": { "numeric": true }
+                },
+                "calendarDaysFontColor":{
+                    "displayName": "Grouping Area Font Color",
+                    "description": "The font color of the grouping area.",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "calendarDaysBackgroundColor":{
+                    "displayName": "Grouping Area Background Color",
+                    "description": "The background color of the grouping area.",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
                 },
                 "numberOfMonths":{
                     "displayName": "Number of Months",

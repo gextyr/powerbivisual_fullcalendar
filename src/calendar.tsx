@@ -48,14 +48,26 @@ export interface State {
   type?: string,
   selectionManager: ISelectionManager;
   resources?: calendarResource[];
-  header: string,
+  headerTitle: string,
   headerWidth: number,
+  headerFont?: string,
+  headerFontSize?: number,
+  headerFontColor?: string,
+  headerBackgroundColor?: string,
   height?: number | 'auto',
   calendarTitle?: string,
   numberOfMonths?: number,
   weekendColor?: string;
   todayColor?: string;
   gridlineColor?: string;
+  calendarTitleFont?:  string,
+  calendarTitleFontColor?:  string,
+  calendarTitleBackgroundColor?:  string,
+  calendarTitleSize?: number;
+  calendarDaysFont?:  string,
+  calendarDaysFontColor?:  string,
+  calendarDaysBackgroundColor?:  string,
+  calendarDaysSize?: number;
 }
 
 //Defaults
@@ -66,14 +78,26 @@ export const initialState: State = {
   type: "resourceTimeline",
   selectionManager: null,
   resources: [{id:null,title:"NA"}], //[{id:"J1",title:"J1"},{id:"J2",title:"J2"},{id:"J3",title:"J3"},{id:"J4",title:"J4"}]
-  header: "Orgs",
+  headerTitle: "Orgs",
   headerWidth: 10,
+  headerFont: "Arial",
+  headerFontSize: 12,
+  headerFontColor: "#000000",
+  headerBackgroundColor: "#000000",
   height:'auto',
   calendarTitle: 'Calendar',
   numberOfMonths: 1,
   weekendColor: "#f0f0f0",
   todayColor: "#fcf8e3",
-  gridlineColor: "#f9f9f9"
+  gridlineColor: "#f9f9f9",
+  calendarTitleFont: "Times New Roman",
+  calendarTitleFontColor: "#000000",
+  calendarTitleBackgroundColor: "#ffffff",
+  calendarTitleSize: 24,
+  calendarDaysFont: "Arial",
+  calendarDaysFontColor: "#000000",
+  calendarDaysBackgroundColor: "#000000",
+  calendarDaysSize: 12
 }
 
 export class ReactCalendar extends React.Component{ //<{}, State> 
@@ -311,7 +335,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         //schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
         resources={this.state.resources}
         resourceAreaWidth={this.state.headerWidth.toString()+'%'}
-        resourceLabelText={this.state.header}
+        resourceLabelText={this.state.headerTitle}
         height={this.state.height!=undefined?this.state.height:50}
         ref={ this.calendarComponentRef }
         eventClick={this.handleEventClick}

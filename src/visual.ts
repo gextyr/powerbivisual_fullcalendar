@@ -255,9 +255,21 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                 //console.info("updating calendar: " + this.settings.calendar.calendarType);
                 ReactCalendar.update({
                     events:events, 
-                    header:this.settings.calendar.header, 
+                    headerTitle:this.settings.calendar.headerTitle, 
+                    headerFont: this.settings.calendar.headerFont,
+                    headerFontSize: this.settings.calendar.headerFontSize,
+                    headerBackgroundColor: this.settings.calendar.headerBackgroundColor,
+                    headerFontColor: this.settings.calendar.headerFontColor,
                     headerWidth:this.settings.calendar.headerWidth,
                     calendarTitle: this.settings.calendar.calendarTitle,
+                    calendarTitleFont: this.settings.calendar.calendarTitleFont,
+                    calendarTitleFontColor: this.settings.calendar.calendarTitleFontColor,
+                    calendarTitleBackgroundColor: this.settings.calendar.calendarTitleBackgroundColor,
+                    calendarTitleSize: this.settings.calendar.calendarTitleSize,
+                    calendarDaysFont: this.settings.calendar.calendarDaysFont,
+                    calendarDaysSize: this.settings.calendar.calendarDaysSize,
+                    calendarDaysBackgroundColor: this.settings.calendar.calendarTitleBackgroundColor,
+                    calendarDaysFontColor: this.settings.calendar.calendarDaysFontColor,
                     numberOfMonths:this.settings.calendar.numberOfMonths,
                     selectionManager:this.selectionManager, 
                     height:this.viewport.height,
@@ -266,6 +278,18 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     gridlineColor: this.settings.calendar.gridlineColor,
                     resources});
                 }
+
+                 //Clear colors
+                 $("td.fc-widget-header .fc-sat, td.fc-widget-content.fc-sat").css("background-color", "");
+                 $("td.fc-widget-header .fc-sun, td.fc-widget-content.fc-sun").css("background-color", "");
+                 $("td.fc-widget-header .fc-today, td.fc-widget-content.fc-today").css("background-color", "");
+                 $(".fc-unthemed th,.fc-unthemed td,.fc-unthemed thead,.fc-unthemed tbody,.fc-unthemed .fc-divider,.fc-unthemed .fc-row,.fc-unthemed .fc-content,.fc-unthemed .fc-popover,.fc-unthemed .fc-list-view,.fc-unthemed .fc-list-heading td").css("border-color", "");
+
+                 //Update calendar colors
+                 $("td.fc-widget-header .fc-sat, td.fc-widget-content.fc-sat").css("background-color", this.settings.calendar.weekendColor);
+                 $("td.fc-widget-header .fc-sun, td.fc-widget-content.fc-sun").css("background-color", this.settings.calendar.weekendColor);
+                 $("td.fc-widget-header .fc-today, td.fc-widget-content.fc-today").css("background-color", this.settings.calendar.todayColor);
+                 $(".fc-unthemed th,.fc-unthemed td,.fc-unthemed thead,.fc-unthemed tbody,.fc-unthemed .fc-divider,.fc-unthemed .fc-row,.fc-unthemed .fc-content,.fc-unthemed .fc-popover,.fc-unthemed .fc-list-view,.fc-unthemed .fc-list-heading td").css("border-color", this.settings.calendar.gridlineColor);
         } else {
             this.clear();
         }
