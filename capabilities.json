@@ -96,11 +96,6 @@
                         }
                     }
                 },
-                "calendarTitle":{
-                    "displayName": "Calendar Title",
-                    "description": "Main title for the calendar",
-                    "type": { "text": true }
-                },
                 "calendarTitleFont": {
                     "displayName": "Calendar Title Font",
                     "description": "The font name of the calendar title.",

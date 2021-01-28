@@ -261,13 +261,12 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     headerBackgroundColor: this.settings.calendar.headerBackgroundColor,
                     headerFontColor: this.settings.calendar.headerFontColor,
                     headerWidth:this.settings.calendar.headerWidth,
-                    calendarTitle: this.settings.calendar.calendarTitle,
                     calendarTitleFont: this.settings.calendar.calendarTitleFont,
                     calendarTitleFontColor: this.settings.calendar.calendarTitleFontColor,
                     calendarTitleBackgroundColor: this.settings.calendar.calendarTitleBackgroundColor,
-                    calendarTitleSize: this.settings.calendar.calendarTitleSize,
+                    calendarTitleFontSize: this.settings.calendar.calendarTitleFontSize,
                     calendarDaysFont: this.settings.calendar.calendarDaysFont,
-                    calendarDaysSize: this.settings.calendar.calendarDaysSize,
+                    calendarDaysFontSize: this.settings.calendar.calendarDaysFontSize,
                     calendarDaysBackgroundColor: this.settings.calendar.calendarTitleBackgroundColor,
                     calendarDaysFontColor: this.settings.calendar.calendarDaysFontColor,
                     numberOfMonths:this.settings.calendar.numberOfMonths,
@@ -279,17 +278,31 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     resources});
                 }
 
-                 //Clear colors
-                 $("td.fc-widget-header .fc-sat, td.fc-widget-content.fc-sat").css("background-color", "");
-                 $("td.fc-widget-header .fc-sun, td.fc-widget-content.fc-sun").css("background-color", "");
-                 $("td.fc-widget-header .fc-today, td.fc-widget-content.fc-today").css("background-color", "");
-                 $(".fc-unthemed th,.fc-unthemed td,.fc-unthemed thead,.fc-unthemed tbody,.fc-unthemed .fc-divider,.fc-unthemed .fc-row,.fc-unthemed .fc-content,.fc-unthemed .fc-popover,.fc-unthemed .fc-list-view,.fc-unthemed .fc-list-heading td").css("border-color", "");
-
-                 //Update calendar colors
+                 //Update weekend, today and gridline colors
                  $("td.fc-widget-header .fc-sat, td.fc-widget-content.fc-sat").css("background-color", this.settings.calendar.weekendColor);
                  $("td.fc-widget-header .fc-sun, td.fc-widget-content.fc-sun").css("background-color", this.settings.calendar.weekendColor);
                  $("td.fc-widget-header .fc-today, td.fc-widget-content.fc-today").css("background-color", this.settings.calendar.todayColor);
                  $(".fc-unthemed th,.fc-unthemed td,.fc-unthemed thead,.fc-unthemed tbody,.fc-unthemed .fc-divider,.fc-unthemed .fc-row,.fc-unthemed .fc-content,.fc-unthemed .fc-popover,.fc-unthemed .fc-list-view,.fc-unthemed .fc-list-heading td").css("border-color", this.settings.calendar.gridlineColor);
+
+                 //Update fonts
+                 $("td.fc-resource-area th.fc-widget-header:first-of-type .fc-cell-text").css("font-family", this.settings.calendar.headerFont);
+                 $("td.fc-time-area th.fc-widget-header:first-of-type .fc-cell-text").css("font-family", this.settings.calendar.calendarTitleFont);
+                 $("td.fc-time-area tr:not(:first-child) .fc-cell-text").css("font-family", this.settings.calendar.calendarDaysFont);
+
+                 //Update font sizes
+                 $("td.fc-resource-area th.fc-widget-header:first-of-type .fc-cell-text").css("font-size", this.settings.calendar.headerFontSize + "px");
+                 $("td.fc-time-area th.fc-widget-header:first-of-type .fc-cell-text").css("font-size", this.settings.calendar.calendarTitleFontSize + "px");
+                 $("td.fc-time-area tr:not(:first-child) .fc-cell-text").css("font-size", this.settings.calendar.calendarDaysFontSize + "px");
+
+                 //Update font colors
+                 $("td.fc-resource-area th.fc-widget-header:first-of-type .fc-cell-text").css("color", this.settings.calendar.headerFontColor);
+                 $("td.fc-time-area th.fc-widget-header:first-of-type .fc-cell-text").css("color", this.settings.calendar.calendarTitleFontColor);
+                 $("td.fc-time-area tr:not(:first-child) .fc-cell-text").css("color", this.settings.calendar.calendarDaysFontColor);
+
+                 //Update background colors
+                 $("td.fc-resource-area th.fc-widget-header:first-of-type").css("background-color", this.settings.calendar.headerBackgroundColor);
+                 $("td.fc-time-area th.fc-widget-header:first-of-type").css("background-color", this.settings.calendar.calendarTitleBackgroundColor);
+                 //$("td.fc-time-area tr:not(:first-child) .fc-cell-content").css("background-color", this.settings.calendar.calendarDaysBackgroundColor);
         } else {
             this.clear();
         }
