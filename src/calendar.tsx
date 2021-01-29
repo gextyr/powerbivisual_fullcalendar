@@ -247,30 +247,33 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   // }
 
   handleDatesRender = (arg)=>{
-                     //Update weekend, today and gridline colors
+                     //Update calendar days, weekend and today background colors
+                     $("td.fc-widget-header .fc-mon, td.fc-widget-header .fc-tue, td.fc-widget-header .fc-wed, td.fc-widget-header .fc-thu, td.fc-widget-header .fc-fri").css("background-color", this.state.calendarDaysBackgroundColor);
                      $("td.fc-widget-header .fc-sat, td.fc-widget-content.fc-sat").css("background-color", this.state.weekendColor);
                      $("td.fc-widget-header .fc-sun, td.fc-widget-content.fc-sun").css("background-color", this.state.weekendColor);
                      $("td.fc-widget-header .fc-today, td.fc-widget-content.fc-today").css("background-color", this.state.todayColor);
+                     
+                     //Update gridline border color
                      $(".fc-unthemed th,.fc-unthemed td,.fc-unthemed thead,.fc-unthemed tbody,.fc-unthemed .fc-divider,.fc-unthemed .fc-row,.fc-unthemed .fc-content,.fc-unthemed .fc-popover,.fc-unthemed .fc-list-view,.fc-unthemed .fc-list-heading td").css("border-color", this.state.gridlineColor);
     
                      //Update fonts
                      $("td.fc-resource-area th.fc-widget-header:first-of-type .fc-cell-text").css("font-family", this.state.headerFont);
-                     $("td.fc-time-area th.fc-widget-header:first-of-type .fc-cell-text").css("font-family", this.state.calendarTitleFont);
+                     $("td.fc-time-area th.fc-widget-header .fc-cell-text").css("font-family", this.state.calendarTitleFont);
                      $("td.fc-time-area tr:not(:first-child) .fc-cell-text").css("font-family", this.state.calendarDaysFont);
     
                      //Update font sizes
                      $("td.fc-resource-area th.fc-widget-header:first-of-type .fc-cell-text").css("font-size", this.state.headerFontSize + "px");
-                     $("td.fc-time-area th.fc-widget-header:first-of-type .fc-cell-text").css("font-size", this.state.calendarTitleFontSize + "px");
+                     $("td.fc-time-area th.fc-widget-header .fc-cell-text").css("font-size", this.state.calendarTitleFontSize + "px");
                      $("td.fc-time-area tr:not(:first-child) .fc-cell-text").css("font-size", this.state.calendarDaysFontSize + "px");
     
                      //Update font colors
                      $("td.fc-resource-area th.fc-widget-header:first-of-type .fc-cell-text").css("color", this.state.headerFontColor);
-                     $("td.fc-time-area th.fc-widget-header:first-of-type .fc-cell-text").css("color", this.state.calendarTitleFontColor);
+                     $("td.fc-time-area th.fc-widget-header .fc-cell-text").css("color", this.state.calendarTitleFontColor);
                      $("td.fc-time-area tr:not(:first-child) .fc-cell-text").css("color", this.state.calendarDaysFontColor);
     
                      //Update background colors
                      $("td.fc-resource-area th.fc-widget-header:first-of-type").css("background-color", this.state.headerBackgroundColor);
-                     $("td.fc-time-area th.fc-widget-header:first-of-type").css("background-color", this.state.calendarTitleBackgroundColor);
+                     $("td.fc-time-area th.fc-widget-header[colspan]:not([colspan='1'])").css("background-color", this.state.calendarTitleBackgroundColor);
                      //$("td.fc-time-area tr:not(:first-child) .fc-cell-content").css("background-color", this.state.calendarDaysBackgroundColor);
   }
 
