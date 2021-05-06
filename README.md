@@ -72,6 +72,7 @@
     * It seems the viewport height is not yet set during the initial update/render cycle
 
 # Other Backlog/TODO
+* !! Add ability to sort by grouping (or other column?)
 * ! The only required fields to render should be Title and Start
     * Currently, grouping and color are also required 
     * Improvements need to be made to handle unset color and grouping fields first
