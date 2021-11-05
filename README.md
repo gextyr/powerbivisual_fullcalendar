@@ -55,8 +55,13 @@
 # Settings
 * Grouping Title - The title for the "grouping rows" column
 * Grouping Area Width % - The percent of the overall width of the visual to use for the grouping title
+* Grouping Area Font - The font name of the grouping area
+* Grouping Area Font size px - The font size (px) of the grouping area
+* Grouping Area Font Color - The font color of the grouping area
+* Grouping Area Background Color - The background color of the grouping area
 * Calendar Title - the title text for the calendar
 * Number of Months - the number of months to render at once (will scroll, and prev/next buttons will advance by that many)
+* Weekend Color - Background color of the weekend columns
 
 # Tips
 * Open f12 tools to see console
