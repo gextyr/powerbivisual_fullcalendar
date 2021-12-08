@@ -12,7 +12,7 @@
 * Get the code: 
     * ```git clone https://github.com/gextyr/powerbivisual_fullcalendar.git```
 * Install PBI tooling:
-    * ```npm i powerbi-visuals-tools```
+    * ```npm i -g powerbi-visuals-tools```
     * This installs the tooling to create, debug, and package new Power BI visuals
     * Note: To create a new project from scratch, use ```pbiviz new ProjectName```
 
