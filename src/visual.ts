@@ -269,6 +269,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     calendarDaysFontSize: this.settings.calendar.calendarDaysFontSize,
                     calendarDaysBackgroundColor: this.settings.calendar.calendarTitleBackgroundColor,
                     calendarDaysFontColor: this.settings.calendar.calendarDaysFontColor,
+                    calendarSwimLaneColor: this.settings.calendar.calendarSwimLaneColor,
                     numberOfMonths:this.settings.calendar.numberOfMonths,
                     selectionManager:this.selectionManager, 
                     height:this.viewport.height,
@@ -277,6 +278,13 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                     gridlineColor: this.settings.calendar.gridlineColor,
                     resources});
                 }
+
+                //Update background colors
+                $("td.fc-resource-area th.fc-widget-header:first-of-type").css("background-color", this.settings.calendar.headerBackgroundColor);
+                $("td.fc-time-area th.fc-widget-header[colspan]:not([colspan='1'])").css("background-color", this.settings.calendar.calendarTitleBackgroundColor);
+                $(".fc-resource-area .fc-widget-content > div").css("background-color", this.settings.calendar.calendarSwimLaneColor);
+                $(".fc-time-area .fc-day").css("background-color", this.settings.calendar.calendarSwimLaneColor);
+                //$("td.fc-time-area tr:not(:first-child) .fc-cell-content").css("background-color", this.settings.calendar.calendarDaysBackgroundColor);
 
                  //Update calendar days, weekend and today background colors
                  $("td.fc-widget-header .fc-mon, td.fc-widget-header .fc-tue, td.fc-widget-header .fc-wed, td.fc-widget-header .fc-thu, td.fc-widget-header .fc-fri").css("background-color", this.settings.calendar.calendarDaysBackgroundColor);
@@ -300,12 +308,7 @@ import VisualTooltipDataItem = powerbi.extensibility.VisualTooltipDataItem;
                  //Update font colors
                  $("td.fc-resource-area th.fc-widget-header:first-of-type .fc-cell-text").css("color", this.settings.calendar.headerFontColor);
                  $("td.fc-time-area th.fc-widget-header .fc-cell-text").css("color", this.settings.calendar.calendarTitleFontColor);
-                 $("td.fc-time-area tr:not(:first-child) .fc-cell-text").css("color", this.settings.calendar.calendarDaysFontColor);
-
-                 //Update background colors
-                 $("td.fc-resource-area th.fc-widget-header:first-of-type").css("background-color", this.settings.calendar.headerBackgroundColor);
-                 $("td.fc-time-area th.fc-widget-header[colspan]:not([colspan='1'])").css("background-color", this.settings.calendar.calendarTitleBackgroundColor);
-                 //$("td.fc-time-area tr:not(:first-child) .fc-cell-content").css("background-color", this.settings.calendar.calendarDaysBackgroundColor);
+                 $("td.fc-time-area tr:not(:first-child) .fc-cell-text").css("color", this.settings.calendar.calendarDaysFontColor);           
         } else {
             this.clear();
         }

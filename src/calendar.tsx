@@ -62,6 +62,7 @@ export interface State {
   calendarTitleFont?:  string,
   calendarTitleFontColor?:  string,
   calendarTitleBackgroundColor?:  string,
+  calendarSwimLaneColor? : string,
   calendarTitleFontSize?: number;
   calendarDaysFont?:  string,
   calendarDaysFontColor?:  string,
@@ -247,6 +248,14 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   // }
 
   handleDatesRender = (arg)=>{
+        
+                     //Update background colors
+                     $("td.fc-resource-area th.fc-widget-header:first-of-type").css("background-color", this.state.headerBackgroundColor);
+                     $("td.fc-time-area th.fc-widget-header[colspan]:not([colspan='1'])").css("background-color", this.state.calendarTitleBackgroundColor);
+                     $(".fc-resource-area .fc-widget-content > div").css("background-color", this.state.calendarSwimLaneColor);
+                     $(".fc-time-area .fc-day").css("background-color", this.state.calendarSwimLaneColor);
+                     //$("td.fc-time-area tr:not(:first-child) .fc-cell-content").css("background-color", this.state.calendarDaysBackgroundColor);
+                     
                      //Update calendar days, weekend and today background colors
                      $("td.fc-widget-header .fc-mon, td.fc-widget-header .fc-tue, td.fc-widget-header .fc-wed, td.fc-widget-header .fc-thu, td.fc-widget-header .fc-fri").css("background-color", this.state.calendarDaysBackgroundColor);
                      $("td.fc-widget-header .fc-sat, td.fc-widget-content.fc-sat").css("background-color", this.state.weekendColor);
@@ -270,11 +279,6 @@ export class ReactCalendar extends React.Component{ //<{}, State>
                      $("td.fc-resource-area th.fc-widget-header:first-of-type .fc-cell-text").css("color", this.state.headerFontColor);
                      $("td.fc-time-area th.fc-widget-header .fc-cell-text").css("color", this.state.calendarTitleFontColor);
                      $("td.fc-time-area tr:not(:first-child) .fc-cell-text").css("color", this.state.calendarDaysFontColor);
-    
-                     //Update background colors
-                     $("td.fc-resource-area th.fc-widget-header:first-of-type").css("background-color", this.state.headerBackgroundColor);
-                     $("td.fc-time-area th.fc-widget-header[colspan]:not([colspan='1'])").css("background-color", this.state.calendarTitleBackgroundColor);
-                     //$("td.fc-time-area tr:not(:first-child) .fc-cell-content").css("background-color", this.state.calendarDaysBackgroundColor);
   }
 
   getNow = ()=>{

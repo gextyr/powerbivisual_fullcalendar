@@ -160,6 +160,17 @@
                         }
                     }
                 },
+                "calendarSwimLaneColor":{
+                    "displayName": "Swim Lanes Color",
+                    "description": "The swim lanes color for the calendar area.",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
                 "numberOfMonths":{
                     "displayName": "Number of Months",
                     "description": "Number of Months to display (Default 1)",

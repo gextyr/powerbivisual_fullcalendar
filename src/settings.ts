@@ -25,6 +25,7 @@ export class CalendarSettings {
     public calendarDaysFontColor: string ="#000000";
     public calendarDaysBackgroundColor: string ="#FFFFFF";
     public calendarDaysFontSize: number = 12;
+    public calendarSwimLaneColor: string ="FFFFFF";
 }
 
 export class VisualSettings extends DataViewObjectsParser {
