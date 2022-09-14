@@ -174,7 +174,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
     var c: HTMLElement = arg.el;//.children[0];
     //console.info("rendering : " + arg.event.id);
     //c.id=arg.event.id;
-    c.setAttribute('fc_id',arg.event.id);
+    //c.setAttribute('fc_id',arg.event.id);
     //console.info(arg);
     //console.info(c);
     
@@ -200,7 +200,7 @@ export class ReactCalendar extends React.Component{ //<{}, State>
       s.appendChild(i);
       //s.appendChild(br);
       //c.childNodes[0].appendChild(s);
-      c.childNodes[0].insertBefore(s, c.childNodes[0].firstChild);
+      //c.childNodes[0].insertBefore(s, c.childNodes[0].firstChild);
     }
 //debugger;
 
