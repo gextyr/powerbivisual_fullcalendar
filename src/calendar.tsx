@@ -12,9 +12,6 @@ import ISelectionManager = powerbi.extensibility.ISelectionManager
 import { createPopper, placements, viewport } from '@popperjs/core';
 import tippy from "tippy.js";
 import 'tippy.js/themes/light.css';
-import CalendarComponent from "@fullcalendar/core/CalendarComponent";
-import { xml } from "d3";
-import { Calendar } from "@fullcalendar/core";
 import bootstrapPlugin from "@fullcalendar/bootstrap"
 import '@fullcalendar/bootstrap/main.css'
 import '@fortawesome/fontawesome-free/css/all.css'
@@ -226,16 +223,16 @@ export class ReactCalendar extends React.Component{ //<{}, State>
   //   date.setDate(date.getMonth() + months);
   //   return date;
   // }
-  // handleNextClick = (arg) =>{
-  //   let calendarApi = this.calendarComponentRef.current!.getApi()
-  //   //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),1));
-  //   calendarApi.incrementDate({months:1});
-  // }
-  // handlePrevClick = (arg) =>{
-  //   let calendarApi = this.calendarComponentRef.current!.getApi()
-  //   //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),-1));
-  //   calendarApi.incrementDate({months:-1});
-  // }
+  handleNextClick = (arg) =>{
+    let calendarApi = this.calendarComponentRef.current!.getApi()
+    //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),1));
+    calendarApi.incrementDate({months:1});
+  }
+  handlePrevClick = (arg) =>{
+    let calendarApi = this.calendarComponentRef.current!.getApi()
+    //calendarApi.gotoDate(this.addMonths(calendarApi.getDate(),-1));
+    calendarApi.incrementDate({months:-1});
+  }
   // handleWindowResize = (arg)=>{
   //   //console.info("handleWindowResize");
   //   //let calendarApi = this.calendarComponentRef.current!.getApi()
@@ -309,27 +306,27 @@ export class ReactCalendar extends React.Component{ //<{}, State>
     var x = (
       <div id="reactCalendar">
       <FullCalendar
-        header={{
-            left: 'prev,next today', //myprev,mynext 
+        headerToolbar={{
+            start: 'prev,next today', //myprev,mynext 
             //center: 'title',
-            right: '' // 'resourceDayGrid' //dayGrid30 resourceDayGrid dayGridWeek
+            end: '' // 'resourceDayGrid' //dayGrid30 resourceDayGrid dayGridWeek
         }}
         ////viewRender  was deprecated in v4
         // viewRender={function(info){
         //   info.el.querySelector('.fc-toolbar > div > h2').innerHTML=this.state.calendarTitle;
         // }}
-        // customButtons={{
-        //   mynext: {
-        //     text:"Next",
-        //     click:this.handleNextClick,
-        //     icon:'right-single-arrow'
-        //   },
-        //   myprev: {
-        //     text:"Prev",
-        //     click:this.handlePrevClick,
-        //     icon:'left-single-arrow'
-        //   }
-        // }}
+        customButtons={{
+          mynext: {
+            text:"Next",
+            click:this.handleNextClick,
+            icon:'right-single-arrow'
+          },
+          myprev: {
+            text:"Prev",
+            click:this.handlePrevClick,
+            icon:'left-single-arrow'
+          }
+        }}
         // views={{
         //   // dayGrid30:{
         //   //   type:'dayGrid',
@@ -354,17 +351,17 @@ export class ReactCalendar extends React.Component{ //<{}, State>
         //schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
         resources={this.state.resources}
         resourceAreaWidth={this.state.headerWidth.toString()+'%'}
-        resourceLabelText={this.state.headerTitle}
+        resourceGroupField={this.state.headerTitle}
         height={this.state.height!=undefined?this.state.height:50}
         ref={ this.calendarComponentRef }
         eventClick={this.handleEventClick}
-        defaultView={this.state.type}
+        initialView={this.state.type}
         events={this.state.events}
-        eventRender={this.handleEventRender}    
+        eventContent={this.handleEventRender}    
         plugins={[ resourceTimelinePlugin, interactionPlugin, bootstrapPlugin  ]} //dayGridPlugin, interactionPlugin
         // windowResize={this.handleWindowResize}
         // viewSkeletonRender={this.handleViewSkeletonRender}
-        datesRender={this.handleDatesRender}        
+        dayCellContent={this.handleDatesRender}        
         //themeSystem = 'bootstrap'
         //buttonIcons={ {prev: 'fa-chevron-left', next:'fa-chevron-right'}}
       />
